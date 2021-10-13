@@ -1,4 +1,10 @@
 import * as React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -15,15 +21,42 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme()
 
-export default function SignInSide() {
+export default function Signup() {
+  const history = useHistory()
+
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [password, setPassword] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+    const data = {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      password,
+    }
+
+    axios
+      .post('https://eventplanningweb.herokuapp.com/auth/users/register', data)
+      .then((res) => {
+        if (res.data.hasError === false) {
+          toast.success(res.data.message)
+          setFirstName('')
+          setLastName('')
+          setPhoneNumber('')
+          setEmail('')
+          setPassword('')
+          window.setTimeout(() => {
+            history.push('/login')
+          }, 3000)
+        } else {
+          toast.error(res.data.message)
+        }
+      })
   }
 
   return (
@@ -78,6 +111,8 @@ export default function SignInSide() {
                     id='firstName'
                     label='First Name'
                     autoFocus
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -88,6 +123,8 @@ export default function SignInSide() {
                     label='Last Name'
                     name='lastName'
                     autoComplete='lname'
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -98,6 +135,8 @@ export default function SignInSide() {
                     label='Email Address'
                     name='email'
                     autoComplete='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -108,6 +147,8 @@ export default function SignInSide() {
                     label='Phone Number'
                     name='phoneNumber'
                     autoComplete='pnumber'
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -119,6 +160,8 @@ export default function SignInSide() {
                     type='password'
                     id='password'
                     autoComplete='new-password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -135,6 +178,7 @@ export default function SignInSide() {
                 fullWidth
                 variant='contained'
                 sx={{ mt: 3, mb: 2 }}
+                color='secondary'
               >
                 Sign Up
               </Button>
@@ -150,6 +194,7 @@ export default function SignInSide() {
           </Box>
         </Grid>
       </Grid>
+      <ToastContainer />
     </ThemeProvider>
   )
 }
