@@ -1,4 +1,10 @@
 import * as React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -16,14 +22,40 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 const theme = createTheme()
 
 export default function Login() {
+  const history = useHistory()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+    const data = {
+      email,
+      password,
+    }
+    axios
+      .post('https://eventplanningweb.herokuapp.com/auth/users/login', data)
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.hasError === false) {
+          toast.success(res.data.message)
+          setEmail('')
+          setPassword('')
+          window.setTimeout(() => {
+            history.push('/')
+          }, 3000)
+
+          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('id', res.data._id)
+          localStorage.setItem('firstName', res.data.firstName)
+          localStorage.setItem('lastName', res.data.lastName)
+          localStorage.setItem('email', res.data.email)
+          localStorage.setItem('phoneNumber', res.data.phoneNumber)
+          localStorage.setItem('password', res.data.password)
+        } else {
+          toast.error(res.data.message)
+        }
+      })
   }
 
   return (
@@ -77,6 +109,8 @@ export default function Login() {
                 name='email'
                 autoComplete='email'
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin='normal'
@@ -87,6 +121,8 @@ export default function Login() {
                 type='password'
                 id='password'
                 autoComplete='current-password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
@@ -117,6 +153,7 @@ export default function Login() {
             </Box>
           </Box>
         </Grid>
+        <ToastContainer />
       </Grid>
     </ThemeProvider>
   )
