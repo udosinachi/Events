@@ -1,9 +1,12 @@
 import React from 'react'
+import Album from '../../components/albums/Album'
+import Header from '../../components/header/Header'
 
 const Home = () => {
   return (
     <div>
-      <h1>Udosinachi</h1>
+      <Header />
+      <Album />
     </div>
   )
 }

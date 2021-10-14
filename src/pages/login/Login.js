@@ -36,7 +36,6 @@ export default function Login() {
     axios
       .post('https://eventplanningweb.herokuapp.com/auth/users/login', data)
       .then((res) => {
-        console.log(res.data)
         if (res.data.hasError === false) {
           toast.success(res.data.message)
           setEmail('')

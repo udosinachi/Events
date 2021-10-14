@@ -12,8 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 export default function Navbar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static' color='secondary'>
+    <Box sx={{ flexGrow: 1 }} className='skewing'>
+      <AppBar position='fixed' color='secondary' className='nav'>
         <Toolbar>
           <IconButton
             size='large'
