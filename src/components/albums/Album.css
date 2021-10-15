@@ -1,7 +1,7 @@
 .album {
-  margin: auto;
-  width: 90%;
-  border: 3px solid red;
+  margin: 130px auto;
+  width: 100%;
+  /* border: 3px solid red; */
 }
 .album h2 {
   text-align: center;

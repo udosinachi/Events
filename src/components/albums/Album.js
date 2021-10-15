@@ -7,6 +7,10 @@ const Album = () => {
     <div className='album'>
       <h2>CATEGORIES OF SERVICES OFFERED</h2>
       <Cards />
+      <Cards />
+      <Cards />
+      <Cards />
+      <Cards />
     </div>
   )
 }
