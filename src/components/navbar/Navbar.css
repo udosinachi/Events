@@ -1,6 +1,12 @@
-.link {
+.link,
+.link1 {
   color: white;
   text-decoration: none;
+}
+@media (max-width: 700px) {
+  .link1 {
+    display: none !important;
+  }
 }
 
 .nav {
@@ -27,4 +33,13 @@
   top: 0%;
   box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
     0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+}
+
+.drawer {
+  display: none !important;
+}
+@media (max-width: 700px) {
+  .drawer {
+    display: block !important;
+  }
 }

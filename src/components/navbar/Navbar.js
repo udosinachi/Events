@@ -1,34 +1,54 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
+import Drawer from './Drawer'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
+// import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
       <AppBar position='fixed' color='secondary' className='nav'>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size='large'
             edge='start'
             color='inherit'
             aria-label='menu'
             sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          > */}
+          <Drawer className='drawer' />
+          {/* </IconButton> */}
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             <Link to='/' className='link'>
-              News
+              Udosinachi
             </Link>
           </Typography>
+          <Button color='inherit' className='link1'>
+            <Link to='/' className='link'>
+              Home
+            </Link>
+          </Button>
+          <Button color='inherit' className='link1'>
+            <Link to='/blog' className='link'>
+              Blog
+            </Link>
+          </Button>
+          <Button color='inherit' className='link1'>
+            <Link to='/about' className='link'>
+              About
+            </Link>
+          </Button>
+          <Button color='inherit' className='link1'>
+            <Link to='/contact' className='link'>
+              Contact us
+            </Link>
+          </Button>
           <Button color='inherit'>
             <Link to='/login' className='link'>
               Login
