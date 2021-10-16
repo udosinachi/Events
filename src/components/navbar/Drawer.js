@@ -9,9 +9,13 @@ import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
+import LoginIcon from '@mui/icons-material/Login'
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import MenuIcon from '@mui/icons-material/Menu'
+import HomeIcon from '@mui/icons-material/Home'
+import ContactIcon from '@mui/icons-material/ContactPage'
+import InfoIcon from '@mui/icons-material/Info'
+import UpdateIcon from '@mui/icons-material/Update'
 import IconButton from '@mui/material/IconButton'
 
 export default function Drawer() {
@@ -39,23 +43,30 @@ export default function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Home', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
+        {[
+          { name: 'Home', icon: <HomeIcon /> },
+          { name: 'Blog', icon: <UpdateIcon /> },
+          { name: 'About', icon: <InfoIcon /> },
+          { name: 'Contact Us', icon: <ContactIcon /> },
+        ].map((text) => (
+          <ListItem button key={text.name}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {text.icon}
+              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
+        {[
+          { name: 'Login', Icon: <LoginIcon /> },
+          { name: 'Sign Up', Icon: <AppRegistrationIcon /> },
+        ].map((text) => (
+          <ListItem button key={text.name}>
+            <ListItemIcon>{text.Icon}</ListItemIcon>
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>
