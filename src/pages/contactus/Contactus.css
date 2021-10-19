@@ -1,0 +1,94 @@
+.contact-div {
+  overflow: hidden;
+}
+
+.text {
+  text-align: center;
+}
+.text h1 {
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+}
+.bodyform {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 50px 100px;
+}
+@media (max-width: 1250px) {
+  .bodyform {
+    margin: 40px;
+  }
+}
+.input1,
+.textarea1,
+.button1 {
+  width: 500px;
+  padding: 20px 5px;
+  margin: 5px;
+}
+@media (max-width: 550px) {
+  .input1,
+  .textarea1,
+  .button1 {
+    width: 400px;
+  }
+}
+@media (max-width: 420px) {
+  .input1,
+  .textarea1,
+  .button1 {
+    width: 340px;
+  }
+}
+@media (max-width: 350px) {
+  .input1,
+  .textarea1,
+  .button1 {
+    width: 300px;
+  }
+}
+.textarea1 {
+  height: 100px;
+}
+.button1 {
+  width: 510px;
+  color: white;
+  background: black;
+  outline: none;
+  border: none;
+}
+@media (max-width: 550px) {
+  .button1 {
+    width: 410px;
+  }
+}
+@media (max-width: 420px) {
+  .button1 {
+    width: 360px;
+  }
+}
+@media (max-width: 350px) {
+  .button1 {
+    width: 310px;
+  }
+}
+
+.social {
+  width: 500px;
+  margin-top: 60px;
+}
+
+.social p {
+  font-size: 20px;
+}
+.icons {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.icons img {
+  width: 30px;
+  cursor: pointer;
+}

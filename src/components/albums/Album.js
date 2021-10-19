@@ -6,11 +6,11 @@ const Album = () => {
   return (
     <div className='album'>
       <h2>CATEGORIES OF SERVICES OFFERED</h2>
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
+      <Cards category='Caterers' />
+      <Cards category='DJ' />
+      <Cards category='Cakes' />
+      <Cards category='Decoration' />
+      <Cards category='MC' />
     </div>
   )
 }

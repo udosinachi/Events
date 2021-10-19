@@ -74,7 +74,7 @@ export default function Drawer() {
   )
 
   return (
-    <div>
+    <div className='drawer'>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <IconButton
@@ -84,7 +84,7 @@ export default function Drawer() {
             aria-label='menu'
             onClick={toggleDrawer(anchor, true)}
           >
-            <MenuIcon className='drawer' />
+            <MenuIcon />
           </IconButton>
           <SwipeableDrawer
             anchor={anchor}

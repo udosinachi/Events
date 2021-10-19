@@ -4,10 +4,10 @@ import CardList from './CardList'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 
-const Cards = () => {
+const Cards = ({ category }) => {
   return (
     <div className='cards-div'>
-      <h5>Caterer</h5>
+      <h5>{category}</h5>
       <div className='cards'>
         {CardList.map((list) => {
           return (
