@@ -6,12 +6,12 @@ const Contactus = () => {
     <div className='contact-div'>
       <div style={{ marginTop: '130px' }} className='body'>
         <div className='text'>
-          <h1>Contact</h1>
-          <p>Get in touch with Udosinachi Ofoegbu</p>
+          <h2>Contact Us</h2>
+          <p>Get more updates</p>
         </div>
         <div className='bodyform'>
           <form className='form1'>
-            <h1>Let's Work Together</h1>
+            <h2 className='contact-h1'>Let's Work Together</h2>
             <input type='text' placeholder='Name' className='input1' />
             <br />
             <input
@@ -36,7 +36,7 @@ const Contactus = () => {
               reality but lack the coding portion let's see what we can do.
               Media inquiries? Sure
             </p>
-            <div className='icons'>
+            {/* <div className='icons'>
               <a
                 href='https://www.linkedin.com/in/udosinachi'
                 target='_blank'
@@ -79,7 +79,7 @@ const Contactus = () => {
               >
                 <img src='/asset/svg/11.svg' alt='icon' className='4' />
               </a>
-            </div>
+            </div> */}
             <p>
               Click the icons for my respective social media accounts and my
               email
