@@ -2,7 +2,7 @@
 
 .link,
 .link1 {
-  color: white;
+  color: #20364b;
   text-decoration: none;
 }
 @media (max-width: 700px) {
@@ -14,13 +14,13 @@
 .nav {
   box-shadow: none !important;
   height: 60px;
-  background: #20364b !important;
+  background: white !important;
 }
 
 .skewing:after {
-  box-shadow: 5vw 0 0 #20364b, -5vw 0 0 #20364b;
+  box-shadow: 5vw 0 0 white, -5vw 0 0 white;
   transform-origin: 100% 100%;
-  background: #20364b;
+  background: white;
   -webkit-transform: rotate(-0.65deg);
   -ms-transform: rotate(-0.65deg);
   -o-transform: rotate(-0.65deg);

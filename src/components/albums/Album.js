@@ -9,9 +9,9 @@ const Album = () => {
         <h2>CATEGORIES OF SERVICES OFFERED</h2>
         <Cards category='Caterers' />
         <Cards category='DJ' />
-        <Cards category='Cakes' />
+        {/* <Cards category='Cakes' />
         <Cards category='Decoration' />
-        <Cards category='MC' />
+        <Cards category='MC' /> */}
       </div>
     </div>
   )

@@ -8,3 +8,8 @@
   overflow: hidden;
   position: sticky;
 }
+.header-overlay {
+  background: linear-gradient(rgba(31, 52, 72, 0.6), rgba(31, 52, 72, 0.8));
+  width: 100%;
+  min-height: 100vh;
+}

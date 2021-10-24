@@ -99,6 +99,7 @@
 }
 .card-p {
   font-size: 17px;
+  color: white;
 }
 .card-h4 {
   overflow: hidden;
@@ -124,7 +125,7 @@
   height: 48px;
   font-size: 14px;
   font-weight: normal;
-  color: black;
+  color: white;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
@@ -136,4 +137,5 @@
 }
 .button1 {
   background-color: #25bcbc !important;
+  width: 150px !important;
 }
