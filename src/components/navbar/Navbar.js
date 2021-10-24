@@ -13,7 +13,7 @@ import Button from '@mui/material/Button'
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
-      <AppBar position='fixed' color='secondary' className='nav'>
+      <AppBar position='fixed' className='nav'>
         <Toolbar>
           {/* <IconButton
             size='large'

@@ -36,7 +36,7 @@ const Cards = ({ category }) => {
           type='button'
           variant='contained'
           sx={{ mt: 1, mb: 2 }}
-          color='secondary'
+          className='button1'
         >
           Show More
         </Button>

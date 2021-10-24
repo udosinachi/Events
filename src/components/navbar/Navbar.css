@@ -1,3 +1,5 @@
+/* #20364b */
+
 .link,
 .link1 {
   color: white;
@@ -12,12 +14,13 @@
 .nav {
   box-shadow: none !important;
   height: 60px;
+  background: #20364b !important;
 }
 
 .skewing:after {
-  box-shadow: 5vw 0 0 #9c27b0, -5vw 0 0 #9c27b0;
+  box-shadow: 5vw 0 0 #20364b, -5vw 0 0 #20364b;
   transform-origin: 100% 100%;
-  background: #9c27b0;
+  background: #20364b;
   -webkit-transform: rotate(-0.65deg);
   -ms-transform: rotate(-0.65deg);
   -o-transform: rotate(-0.65deg);

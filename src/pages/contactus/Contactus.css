@@ -9,7 +9,7 @@
   font-size: 50px;
   margin: 0;
   padding: 0;
-  color: #9c27b0;
+  color: #20364b;
 }
 .bodyform {
   display: flex;
@@ -23,7 +23,7 @@
   }
 }
 .contact-h1 {
-  color: #9c27b0;
+  color: #20364b;
 }
 
 .input1,
@@ -60,7 +60,7 @@
 .button1 {
   width: 510px;
   color: white;
-  background: #9c27b0;
+  background: #20364b;
   outline: none;
   border: none;
 }
