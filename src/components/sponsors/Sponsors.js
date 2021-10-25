@@ -1,11 +1,11 @@
 import React from 'react'
 import './Sponsors.css'
 
-const Footer = () => {
+const Sponsors = () => {
   return (
-    <div className='footer'>
-      <div className='footer-div'>
-        <div className='footer-head-text'>
+    <div className='sponsors'>
+      <div className='sponsors-div'>
+        <div className='sponsors-head-text'>
           <span>Our</span>
           <strong>Sponsors</strong>
         </div>
@@ -19,4 +19,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Sponsors

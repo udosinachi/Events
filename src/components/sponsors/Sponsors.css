@@ -1,8 +1,8 @@
-.footer {
+.sponsors {
   position: relative;
   background-color: whitesmoke;
 }
-.footer:after {
+.sponsors:after {
   box-shadow: 5vw 0 0 #fff, -5vw 0 0 #fff;
   -webkit-transform: rotate(-1.5deg);
   -ms-transform: rotate(-1.5deg);
@@ -27,20 +27,20 @@
   left: -2px;
   height: 150px;
 }
-.footer-div {
+.sponsors-div {
   /* border: 3px solid red; */
   width: 90%;
   margin: auto;
   padding: 50px 0;
 }
-.footer-head-text {
+.sponsors-head-text {
   /* border: 2px solid blue; */
   text-align: center;
   position: relative;
   display: inline-block;
   width: 100%;
 }
-.footer-head-text span {
+.sponsors-head-text span {
   font-family: 'SourceSansPro-Regular', 'Open Sans', Helvetica, Arial,
     sans-serif;
   position: absolute;
@@ -49,7 +49,7 @@
   color: #25bcbc;
   font-size: 20px;
 }
-.footer-head-text strong {
+.sponsors-head-text strong {
   font-weight: normal;
   line-height: 63px;
   font-size: 63px;

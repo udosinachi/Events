@@ -3,6 +3,7 @@ import Album from '../../components/albums/Album'
 import Sponsors from '../../components/sponsors/Sponsors'
 import Header from '../../components/header/Header'
 import Updates from '../../components/updates/Updates'
+import Footer from '../../components/footer/Footer'
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Album />
       <Updates />
       <Sponsors />
+      <Footer />
     </div>
   )
 }
