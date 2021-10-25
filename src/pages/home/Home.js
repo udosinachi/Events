@@ -1,5 +1,6 @@
 import React from 'react'
 import Album from '../../components/albums/Album'
+import Sponsors from '../../components/sponsors/Sponsors'
 import Header from '../../components/header/Header'
 import Updates from '../../components/updates/Updates'
 
@@ -9,6 +10,7 @@ const Home = () => {
       <Header />
       <Album />
       <Updates />
+      <Sponsors />
     </div>
   )
 }

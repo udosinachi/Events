@@ -12,6 +12,11 @@
   background: url(https://branchoutsf.com/img/pages/index/tmta.background.svg);
   background-size: cover;
 }
+@media (max-width: 500px) {
+  .update {
+    min-height: 400px;
+  }
+}
 
 .update-text {
   display: block;
