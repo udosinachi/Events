@@ -1,6 +1,42 @@
 .footer {
   margin: 20px 0;
 }
-.footer-text {
+.footer-div {
+  width: 90%;
+  margin: auto;
+  border-bottom: 1px solid silver;
   text-align: center;
+  padding: 20px 0;
+}
+
+.footer-logo img {
+  width: 40px;
+}
+
+.footer-icons {
+  font-size: 25px;
+  padding: 25px 0 90px 0;
+}
+.footer-icons i {
+  color: #25bcbc;
+  font-size: 40px;
+  margin: 0 10px;
+}
+
+.footer-links a {
+  color: black;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-links a:hover {
+  color: #25bcbc;
+}
+.footer-copyrights {
+  width: 90%;
+  margin: auto;
+  padding: 20px 0;
+  /* border: 3px solid red; */
+  text-align: center;
+  font-size: 12px;
 }
