@@ -7,6 +7,7 @@ import Login from './pages/login/Login'
 // import Navbar from './components/navbar/Navbar'
 import Signup from './pages/signup/Signup'
 import Contactus from './pages/contactus/Contactus'
+import About from './pages/about/About'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/login' component={Login} exact />
           <Route path='/signup' component={Signup} exact />
           <Route path='/contact' component={Contactus} exact />
+          <Route path='/about' component={About} exact />
         </Switch>
       </Router>
     </div>

@@ -1,9 +1,13 @@
 import React from 'react'
+import Sponsors from '../sponsors/Sponsors'
+import Updates from '../updates/Updates'
 import './Footer.css'
 
 const Footer = () => {
   return (
     <div className='footer'>
+      <Updates />
+      <Sponsors />
       <div className='footer-div'>
         <div className='footer-logo'>
           <img
@@ -29,6 +33,7 @@ const Footer = () => {
           that unify user experience and measurement across different devices,
           platforms, and channels.
         </span>
+        <br />
         <br />
         <span>©2017 Branch. All rights reserved.</span>
       </div>
