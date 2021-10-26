@@ -1,0 +1,14 @@
+.blog {
+  background-color: #20364b;
+  padding: 100px 0;
+  color: white;
+  overflow: hidden;
+}
+.blog-div {
+  width: 90%;
+  margin: 20px auto;
+  border: 3px solid red;
+}
+.blog-card {
+  width: 100%;
+}

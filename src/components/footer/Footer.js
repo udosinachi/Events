@@ -29,13 +29,13 @@ const Footer = () => {
 
       <div className='footer-copyrights'>
         <span>
-          Branch provides the leading mobile linking platform with solutions
+          Udosinachi provides the leading mobile linking platform with solutions
           that unify user experience and measurement across different devices,
           platforms, and channels.
         </span>
         <br />
         <br />
-        <span>©2017 Branch. All rights reserved.</span>
+        <span>©2021 Udosinachi. All rights reserved.</span>
       </div>
     </div>
   )

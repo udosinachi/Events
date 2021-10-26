@@ -8,6 +8,8 @@ import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Contactus from './pages/contactus/Contactus'
 import About from './pages/about/About'
+import Profile from './pages/profile/Profile'
+import Blog from './pages/blog/Blog'
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path='/signup' component={Signup} exact />
           <Route path='/contact' component={Contactus} exact />
           <Route path='/about' component={About} exact />
+          <Route path='/profile' component={Profile} exact />
+          <Route path='/blog' component={Blog} exact />
         </Switch>
       </Router>
     </div>

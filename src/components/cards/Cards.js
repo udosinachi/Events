@@ -3,6 +3,7 @@ import './Cards.css'
 import CardList from './CardList'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
+import { Link } from 'react-router-dom'
 
 const Cards = ({ category }) => {
   return (
@@ -12,7 +13,7 @@ const Cards = ({ category }) => {
         {CardList.map((list) => {
           return (
             <div className='main-cards' key={list.id}>
-              <a href='/sd' className='a'>
+              <Link to='/profile' className='a'>
                 <div className='cards-image'>
                   <img
                     src='/assets/optician.jpg'
@@ -26,7 +27,7 @@ const Cards = ({ category }) => {
                   <p className='card-p2'>{list.name}</p>
                   <p className='card-p3'>{list.text}</p>
                 </div>
-              </a>
+              </Link>
             </div>
           )
         })}

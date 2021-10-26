@@ -1,0 +1,22 @@
+.profile {
+  background-color: #20364b;
+  padding: 100px 0;
+  color: white;
+  overflow: hidden;
+}
+.profile-div {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.profile-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: -9px;
+  margin-bottom: 26px;
+  -webkit-clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
+  clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
+  vertical-align: middle;
+  z-index: 1;
+}
