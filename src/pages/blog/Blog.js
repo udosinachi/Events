@@ -9,6 +9,7 @@ const Blog = () => {
     <div>
       <Navbar />
       <div className='blog'>
+        <p className='profile-text-header'> POSTS</p>
         <div className='blog-div'>
           <BlogPost />
         </div>

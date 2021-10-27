@@ -3,12 +3,18 @@
   padding: 100px 0;
   color: white;
   overflow: hidden;
+  /* border: 3px solid green; */
 }
 .profile-div {
   width: 90%;
-  margin: 20px auto;
-  display: flex;
-  justify-content: space-between;
+  margin: auto;
+  /* border: 3px solid white; */
+}
+.profile-text-header {
+  font-size: xx-large;
+  text-align: center;
+  font-weight: 600;
+  margin: 20px 0;
 }
 .profile-image {
   max-width: 100%;
@@ -19,4 +25,34 @@
   clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
   vertical-align: middle;
   z-index: 1;
+  /* border: 3px solid blue; */
+}
+.profile-body {
+  display: flex;
+  justify-content: space-between;
+  /* border: 3px solid red; */
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .profile-body {
+    display: block;
+  }
+  .profile-text-subdiv {
+    width: 100% !important;
+  }
+}
+/* .profile-image-div {
+  border: 3px solid black;
+} */
+/* .profile-text-div {
+  border: 3px solid pink;
+} */
+.profile-text-subdiv {
+  /* border: 3px solid yellow; */
+  width: 90%;
+  margin: 0 auto;
+}
+.profile-h4 {
+  font-size: 30px;
+  margin: 0;
 }

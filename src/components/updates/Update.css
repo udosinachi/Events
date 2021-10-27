@@ -9,7 +9,7 @@
   padding-top: 60px;
   margin-top: -1px;
   min-height: 350px;
-  background: url(https://branchoutsf.com/img/pages/index/tmta.background.svg);
+  background-image: url('/src/components/updates/sub-background.svg');
   background-size: cover;
 }
 @media (max-width: 500px) {
