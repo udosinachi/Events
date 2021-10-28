@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Blog.css'
 
 import Card from '@mui/material/Card'
@@ -17,7 +17,7 @@ import BlogImage from './BlogImage'
 import BlogText from './BlogText'
 
 const BlogPost = () => {
-  const [heart, setHeart] = useState(true)
+  // const [heart, setHeart] = useState(true)
 
   return (
     <div>
@@ -60,10 +60,10 @@ const BlogPost = () => {
           <CardActions disableSpacing>
             <IconButton aria-label='add to favorites'>
               <FavoriteIcon
-                onClick={() => {
-                  setHeart(!heart)
-                }}
-                className={heart ? 'heart-white' : 'heart-red'}
+              // onClick={() => {
+              //   setHeart(!heart)
+              // }}
+              // className={heart ? 'heart-white' : 'heart-red'}
               />
             </IconButton>
             <IconButton aria-label='share'>

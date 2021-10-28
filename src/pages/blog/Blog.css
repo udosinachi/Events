@@ -27,7 +27,6 @@
   /* border: 3px solid blue; */
   max-width: 100%;
   height: auto;
-
   margin-bottom: 26px;
   -webkit-clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
   clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
@@ -42,4 +41,8 @@
 }
 .heart-red {
   color: red;
+}
+.filter {
+  color: white !important;
+  border: 0.5px solid white !important;
 }
