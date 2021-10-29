@@ -49,8 +49,15 @@ export default function Signup() {
           setPhoneNumber('')
           setEmail('')
           setPassword('')
+          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('id', res.data._id)
+          localStorage.setItem('firstName', res.data.firstName)
+          localStorage.setItem('lastName', res.data.lastName)
+          localStorage.setItem('email', res.data.email)
+          localStorage.setItem('phoneNumber', res.data.phoneNumber)
+          localStorage.setItem('password', res.data.password)
           window.setTimeout(() => {
-            history.push('/login')
+            history.push('/')
           }, 3000)
         } else {
           toast.error(res.data.message)

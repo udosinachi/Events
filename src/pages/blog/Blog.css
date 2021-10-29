@@ -11,7 +11,7 @@
 }
 @media (max-width: 500px) {
   .blog-div {
-    width: 90%;
+    width: 95%;
   }
 }
 .blog-card {
@@ -41,8 +41,4 @@
 }
 .heart-red {
   color: red;
-}
-.filter {
-  color: white !important;
-  border: 0.5px solid white !important;
 }
