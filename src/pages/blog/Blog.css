@@ -42,3 +42,24 @@
 .heart-red {
   color: red;
 }
+.filter-button {
+  color: #20364b;
+  background-color: white;
+  width: auto;
+  height: 40px;
+  outline: none;
+  border: none;
+}
+.filter-button:hover {
+  background-color: inherit;
+  color: white;
+  cursor: pointer;
+}
+.filter-button-click {
+  background-color: inherit;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  outline: none;
+  border: none;
+}

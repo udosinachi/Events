@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import Drawer from './Drawer'
@@ -11,6 +12,8 @@ import Button from '@mui/material/Button'
 // import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
+  const [name] = useState(localStorage.getItem('firstName'))
+
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
       <AppBar position='fixed' className='nav'>
@@ -49,16 +52,26 @@ export default function Navbar() {
               Contact us
             </Link>
           </Button>
-          <Button color='inherit'>
-            <Link to='/login' className='link'>
-              Login
-            </Link>
-          </Button>
-          <Button color='inherit'>
-            <Link to='/signup' className='link'>
-              Sign Up
-            </Link>
-          </Button>
+          {localStorage.getItem('firstName') !== name ? (
+            <Button color='inherit'>
+              <Link to='/about' className='link'>
+                {name}
+              </Link>
+            </Button>
+          ) : (
+            <>
+              <Button color='inherit'>
+                <Link to='/login' className='link'>
+                  Login
+                </Link>
+              </Button>
+              <Button color='inherit'>
+                <Link to='/signup' className='link'>
+                  Sign Up
+                </Link>
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
