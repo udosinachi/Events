@@ -23,32 +23,54 @@ const BlogPost = () => {
   return (
     <div>
       <div>
-        <button className='filter-button' onClick={() => setToggle('All')}>
+        <button
+          // className='filter-button'
+          className={toggle === 'All' ? 'filter-button-click' : 'filter-button'}
+          onClick={() => setToggle('All')}
+        >
           All
         </button>
-        <button className='filter-button' onClick={() => setToggle('Cake')}>
+        <button
+          className={
+            toggle === 'Cake' ? 'filter-button-click' : 'filter-button'
+          }
+          onClick={() => setToggle('Cake')}
+        >
           Cakes
         </button>
-        <button className='filter-button' onClick={() => setToggle('Caterer')}>
+        <button
+          className={
+            toggle === 'Caterer' ? 'filter-button-click' : 'filter-button'
+          }
+          onClick={() => setToggle('Caterer')}
+        >
           Caterers
         </button>
-        <button className='filter-button' onClick={() => setToggle('Dj')}>
+        <button
+          className={toggle === 'Dj' ? 'filter-button-click' : 'filter-button'}
+          onClick={() => setToggle('Dj')}
+        >
           DJ
         </button>
         <button
-          className='filter-button'
+          className={
+            toggle === 'Decoration' ? 'filter-button-click' : 'filter-button'
+          }
           onClick={() => setToggle('Decoration')}
         >
           Decoration
         </button>
-        <button className='filter-button' onClick={() => setToggle('MC')}>
+        <button
+          className={toggle === 'MC' ? 'filter-button-click' : 'filter-button'}
+          onClick={() => setToggle('MC')}
+        >
           MC
         </button>
       </div>
       {BlogText.map((text) => (
         <span key={text.id}>
           {/* For displaying all */}
-          {toggle === 'All' && (
+          {toggle === `${text.all}` && (
             <Card className='blog-card'>
               <CardHeader
                 avatar={
@@ -103,7 +125,7 @@ const BlogPost = () => {
           )}
 
           {/* For each Category */}
-          {toggle === `${text.toggle}` && (
+          {toggle === `${text.category}` && (
             <Card className='blog-card'>
               <CardHeader
                 avatar={
