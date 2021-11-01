@@ -70,7 +70,7 @@ const BlogPost = () => {
       {BlogText.map((text) => (
         <span key={text.id}>
           {/* For displaying all */}
-          {toggle === `${text.all}` && (
+          {toggle === text.all && (
             <Card className='blog-card'>
               <CardHeader
                 avatar={
@@ -125,7 +125,7 @@ const BlogPost = () => {
           )}
 
           {/* For each Category */}
-          {toggle === `${text.category}` && (
+          {toggle === text.category && (
             <Card className='blog-card'>
               <CardHeader
                 avatar={
