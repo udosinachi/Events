@@ -52,6 +52,7 @@ export default function Navbar() {
               Contact us
             </Link>
           </Button>
+          {/* <img src={localStorage.getItem('image')} alt='default' /> */}
           {localStorage.getItem('firstName') !== name ? (
             <Button color='inherit'>
               <Link to='/about' className='link'>

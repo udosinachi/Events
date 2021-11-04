@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import './Blog.css'
 
 import Card from '@mui/material/Card'
@@ -19,53 +20,39 @@ import BlogText from './BlogText'
 const BlogPost = () => {
   const [toggle, setToggle] = useState('All')
   const [heart, setHeart] = useState(true)
+  const [category, setCategory] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('https://eventplanningweb.herokuapp.com/category/allcategory')
+      .then((res) => {
+        setCategory(res.data.categories)
+      })
+  }, [])
 
   return (
     <div>
       <div>
         <button
-          // className='filter-button'
           className={toggle === 'All' ? 'filter-button-click' : 'filter-button'}
           onClick={() => setToggle('All')}
         >
           All
         </button>
-        <button
-          className={
-            toggle === 'Cake' ? 'filter-button-click' : 'filter-button'
-          }
-          onClick={() => setToggle('Cake')}
-        >
-          Cakes
-        </button>
-        <button
-          className={
-            toggle === 'Caterer' ? 'filter-button-click' : 'filter-button'
-          }
-          onClick={() => setToggle('Caterer')}
-        >
-          Caterers
-        </button>
-        <button
-          className={toggle === 'Dj' ? 'filter-button-click' : 'filter-button'}
-          onClick={() => setToggle('Dj')}
-        >
-          DJ
-        </button>
-        <button
-          className={
-            toggle === 'Decoration' ? 'filter-button-click' : 'filter-button'
-          }
-          onClick={() => setToggle('Decoration')}
-        >
-          Decoration
-        </button>
-        <button
-          className={toggle === 'MC' ? 'filter-button-click' : 'filter-button'}
-          onClick={() => setToggle('MC')}
-        >
-          MC
-        </button>
+
+        {category.map((item) => {
+          return (
+            <button
+              key={item._id}
+              className={
+                toggle === item.name ? 'filter-button-click' : 'filter-button'
+              }
+              onClick={() => setToggle(item.name)}
+            >
+              {item.name}
+            </button>
+          )
+        })}
       </div>
       {BlogText.map((text) => (
         <span key={text.id}>

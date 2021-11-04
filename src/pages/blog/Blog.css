@@ -45,21 +45,21 @@
 .filter-button {
   color: #20364b;
   background-color: white;
-  width: auto;
+  width: 80px;
   height: 40px;
   outline: none;
-  border: none;
+  /* border: none; */
 }
 .filter-button:hover {
-  background-color: inherit;
-  color: white;
-  cursor: pointer;
-}
-.filter-button-click {
-  background-color: inherit;
-  color: white;
+  background-color: white;
   cursor: pointer;
   height: 40px;
-  outline: none;
-  border: none;
+  border: 3px solid #20364b;
+}
+.filter-button-click {
+  width: 80px;
+  background-color: white;
+  cursor: pointer;
+  height: 40px;
+  border: 3px solid red;
 }

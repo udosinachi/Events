@@ -50,6 +50,7 @@ export default function Login() {
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('phoneNumber', res.data.phoneNumber)
           localStorage.setItem('password', res.data.password)
+          localStorage.setItem('image', res.data.image)
         } else {
           toast.error(res.data.message)
         }
