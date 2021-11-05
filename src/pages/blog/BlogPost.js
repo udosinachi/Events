@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import Moment from 'react-moment'
 import './Blog.css'
 
 import Card from '@mui/material/Card'
@@ -21,12 +23,23 @@ const BlogPost = () => {
   const [toggle, setToggle] = useState('All')
   const [heart, setHeart] = useState(true)
   const [category, setCategory] = useState([])
+  const [blog, setBlog] = useState([])
 
   useEffect(() => {
     axios
       .get('https://eventplanningweb.herokuapp.com/category/allcategory')
       .then((res) => {
         setCategory(res.data.categories)
+      })
+      .catch((err) => {
+        toast.error('Error please try again')
+      })
+
+    axios
+      .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
+      .then((res) => {
+        setBlog(res.data.blogposts)
+        console.log(res.data.blogposts)
       })
   }, [])
 
@@ -54,62 +67,77 @@ const BlogPost = () => {
           )
         })}
       </div>
-      {BlogText.map((text) => (
-        <span key={text.id}>
+      {/* {blog.map((j) => (
+        <div key={j._id}>
+          <h1>{j.text[1]}</h1>
+          <p>
+            {j.blogImage.map((h) => (
+              <div key={h}>
+                <img src={h} />
+              </div>
+            ))}
+          </p>
+        </div>
+      ))} */}
+      {blog.map((text) => (
+        <span key={text._id}>
           {/* For displaying all */}
-          {toggle === text.all && (
-            <Card className='blog-card'>
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-                    {text.avatar}
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label='settings'>
-                    <MoreVertIcon sx={{ color: red[50] }} />
-                  </IconButton>
-                }
-                title={<span style={{ color: 'white' }}>{text.name}</span>}
-                subheader={<span className='blog-date'>{text.date}</span>}
-              />
-              <CardContent>
-                <Typography variant='body2' color='white'>
-                  {text.paragraph}
-                </Typography>
-              </CardContent>
-
-              <ImageList cols={2} className='blog-imagelist'>
-                {BlogImage.map((item) => (
-                  <ImageListItem key={item.id}>
-                    <img
-                      src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                      srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt='blogpics'
-                      loading='lazy'
-                      className='blog-images'
-                    />
-                  </ImageListItem>
-                ))}
-              </ImageList>
-
-              <CardActions disableSpacing>
-                <IconButton
-                  aria-label='add to favorites'
-                  onClick={() => {
-                    setHeart(!heart)
-                  }}
-                >
-                  <FavoriteIcon
-                    className={heart ? 'heart-white' : 'heart-red'}
-                  />
+          {/* {toggle === text.all && ( */}
+          <Card className='blog-card'>
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
+                  {text.name[0]}
+                </Avatar>
+              }
+              action={
+                <IconButton aria-label='settings'>
+                  <MoreVertIcon sx={{ color: red[50] }} />
                 </IconButton>
-                <IconButton aria-label='share'>
-                  <ShareIcon sx={{ color: red[50] }} />
-                </IconButton>
-              </CardActions>
-            </Card>
-          )}
+              }
+              title={<span style={{ color: 'white' }}>{text.name}</span>}
+              subheader={
+                <Moment format='D MMM YYYY' withTitle className='blog-date'>
+                  {text.createdAt}
+                </Moment>
+              }
+            />
+            <CardContent>
+              <Typography variant='body2' color='white'>
+                {text.text}
+              </Typography>
+            </CardContent>
+
+            <ImageList cols={2} className='blog-imagelist'>
+              {text.blogImage.map((item) => (
+                <ImageListItem key={item}>
+                  <img src={item} alt='blogpics' />
+                  {/* <img
+                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt='blogpics'
+                    loading='lazy'
+                    className='blog-images'
+                  /> */}
+                </ImageListItem>
+              ))}
+            </ImageList>
+
+            <CardActions disableSpacing>
+              <IconButton
+                aria-label='add to favorites'
+                onClick={() => {
+                  setHeart(!heart)
+                }}
+              >
+                <FavoriteIcon className={heart ? 'heart-white' : 'heart-red'} />
+              </IconButton>
+              <IconButton aria-label='share'>
+                <ShareIcon sx={{ color: red[50] }} />
+              </IconButton>
+            </CardActions>
+          </Card>
+          {/* )} */}
 
           {/* For each Category */}
           {toggle === text.category && (
@@ -167,6 +195,7 @@ const BlogPost = () => {
           )}
         </span>
       ))}
+      <ToastContainer />
     </div>
   )
 }
