@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
@@ -17,26 +17,41 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 const theme = createTheme()
 
 export default function Signup() {
   const history = useHistory()
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [businessName, setBusinessName] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('')
+  const [category, setCategory] = useState('')
+  const [career, setCareer] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('https://eventplanningweb.herokuapp.com/category/allcategory')
+      .then((res) => {
+        setCareer(res.data.categories)
+      })
+      .catch((err) => {
+        toast.error('Unable to Display Categories')
+      })
+  }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = {
-      firstName,
-      lastName,
+      fullName,
+      businessName,
       phoneNumber,
       email,
       password,
+      category,
     }
 
     axios
@@ -44,18 +59,20 @@ export default function Signup() {
       .then((res) => {
         if (res.data.hasError === false) {
           toast.success(res.data.message)
-          setFirstName('')
-          setLastName('')
+          setFullName('')
+          setBusinessName('')
           setPhoneNumber('')
           setEmail('')
           setPassword('')
+          setCategory('')
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('id', res.data._id)
-          localStorage.setItem('firstName', res.data.firstName)
-          localStorage.setItem('lastName', res.data.lastName)
+          localStorage.setItem('fullName', res.data.fullName)
+          localStorage.setItem('businessName', res.data.businessName)
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('phoneNumber', res.data.phoneNumber)
           localStorage.setItem('password', res.data.password)
+          localStorage.setItem('category', res.data.category)
           window.setTimeout(() => {
             history.push('/')
           }, 3000)
@@ -111,26 +128,26 @@ export default function Signup() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete='fname'
-                    name='firstName'
+                    name='fullName'
                     required
                     fullWidth
-                    id='firstName'
-                    label='First Name'
+                    id='fullName'
+                    label='Full Name'
                     autoFocus
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     fullWidth
-                    id='lastName'
-                    label='Last Name'
-                    name='lastName'
+                    id='businessName'
+                    label='Business Name'
+                    name='businessName'
                     autoComplete='lname'
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -169,6 +186,28 @@ export default function Signup() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel id='demo-simple-select-label'>
+                      Category *
+                    </InputLabel>
+
+                    <Select
+                      labelId='demo-simple-select-label'
+                      id='demo-simple-select'
+                      label='Category *'
+                      onChange={(e) => setCategory(e.target.value)}
+                      value={category}
+                    >
+                      {career.map((cat) => (
+                        <MenuItem key={cat._id} value={cat.name}>
+                          {cat.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel

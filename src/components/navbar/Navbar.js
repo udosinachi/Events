@@ -12,7 +12,7 @@ import Button from '@mui/material/Button'
 // import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
-  const [name] = useState(localStorage.getItem('firstName'))
+  const [name] = useState(localStorage.getItem('businessName'))
 
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
@@ -53,7 +53,7 @@ export default function Navbar() {
             </Link>
           </Button>
           {/* <img src={localStorage.getItem('image')} alt='default' /> */}
-          {localStorage.getItem('firstName') === name ? (
+          {localStorage.getItem('businessName') === name ? (
             <Button color='inherit'>
               <Link to='/about' className='link'>
                 {name}

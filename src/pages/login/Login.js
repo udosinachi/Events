@@ -45,8 +45,8 @@ export default function Login() {
 
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('id', res.data._id)
-          localStorage.setItem('firstName', res.data.firstName)
-          localStorage.setItem('lastName', res.data.lastName)
+          localStorage.setItem('fullName', res.data.fullName)
+          localStorage.setItem('businessName', res.data.businessName)
           localStorage.setItem('email', res.data.email)
           localStorage.setItem('phoneNumber', res.data.phoneNumber)
           localStorage.setItem('password', res.data.password)
