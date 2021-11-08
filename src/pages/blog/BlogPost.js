@@ -16,8 +16,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
-import BlogImage from './BlogImage'
-import BlogText from './BlogText'
 
 const BlogPost = () => {
   const [toggle, setToggle] = useState('All')
@@ -67,85 +65,15 @@ const BlogPost = () => {
           )
         })}
       </div>
-      {/* {blog.map((j) => (
-        <div key={j._id}>
-          <h1>{j.text[1]}</h1>
-          <p>
-            {j.blogImage.map((h) => (
-              <div key={h}>
-                <img src={h} />
-              </div>
-            ))}
-          </p>
-        </div>
-      ))} */}
+
       {blog.map((text) => (
         <span key={text._id}>
-          {/* For displaying all */}
-          {/* {toggle === text.all && ( */}
-          <Card className='blog-card'>
-            <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-                  {text.name[0]}
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label='settings'>
-                  <MoreVertIcon sx={{ color: red[50] }} />
-                </IconButton>
-              }
-              title={<span style={{ color: 'white' }}>{text.name}</span>}
-              subheader={
-                <Moment format='D MMM YYYY' withTitle className='blog-date'>
-                  {text.createdAt}
-                </Moment>
-              }
-            />
-            <CardContent>
-              <Typography variant='body2' color='white'>
-                {text.text}
-              </Typography>
-            </CardContent>
-
-            <ImageList cols={2} className='blog-imagelist'>
-              {text.blogImage.map((item) => (
-                <ImageListItem key={item}>
-                  <img src={item} alt='blogpics' />
-                  {/* <img
-                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt='blogpics'
-                    loading='lazy'
-                    className='blog-images'
-                  /> */}
-                </ImageListItem>
-              ))}
-            </ImageList>
-
-            <CardActions disableSpacing>
-              <IconButton
-                aria-label='add to favorites'
-                onClick={() => {
-                  setHeart(!heart)
-                }}
-              >
-                <FavoriteIcon className={heart ? 'heart-white' : 'heart-red'} />
-              </IconButton>
-              <IconButton aria-label='share'>
-                <ShareIcon sx={{ color: red[50] }} />
-              </IconButton>
-            </CardActions>
-          </Card>
-          {/* )} */}
-
-          {/* For each Category */}
-          {toggle === text.category && (
+          {toggle === 'All' ? (
             <Card className='blog-card'>
               <CardHeader
                 avatar={
                   <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-                    {text.avatar}
+                    {text.name[0]}
                   </Avatar>
                 }
                 action={
@@ -154,24 +82,29 @@ const BlogPost = () => {
                   </IconButton>
                 }
                 title={<span style={{ color: 'white' }}>{text.name}</span>}
-                subheader={<span className='blog-date'>{text.date}</span>}
+                subheader={
+                  <Moment format='D MMM YYYY' withTitle className='blog-date'>
+                    {text.createdAt}
+                  </Moment>
+                }
               />
               <CardContent>
                 <Typography variant='body2' color='white'>
-                  {text.paragraph}
+                  {text.text}
                 </Typography>
               </CardContent>
 
               <ImageList cols={2} className='blog-imagelist'>
-                {BlogImage.map((item) => (
-                  <ImageListItem key={item.id}>
-                    <img
-                      src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                      srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt='blogpics'
-                      loading='lazy'
-                      className='blog-images'
-                    />
+                {text.blogImage.map((item) => (
+                  <ImageListItem key={item}>
+                    <img src={item} alt='blogpics' />
+                    {/* <img
+                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt='blogpics'
+                    loading='lazy'
+                    className='blog-images'
+                  /> */}
                   </ImageListItem>
                 ))}
               </ImageList>
@@ -192,6 +125,65 @@ const BlogPost = () => {
                 </IconButton>
               </CardActions>
             </Card>
+          ) : (
+            toggle === text.category && (
+              <Card className='blog-card'>
+                <CardHeader
+                  avatar={
+                    <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
+                      {text.name[0]}
+                    </Avatar>
+                  }
+                  action={
+                    <IconButton aria-label='settings'>
+                      <MoreVertIcon sx={{ color: red[50] }} />
+                    </IconButton>
+                  }
+                  title={<span style={{ color: 'white' }}>{text.name}</span>}
+                  subheader={
+                    <Moment format='D MMM YYYY' withTitle className='blog-date'>
+                      {text.createdAt}
+                    </Moment>
+                  }
+                />
+                <CardContent>
+                  <Typography variant='body2' color='white'>
+                    {text.text}
+                  </Typography>
+                </CardContent>
+
+                <ImageList cols={2} className='blog-imagelist'>
+                  {text.blogImage.map((item) => (
+                    <ImageListItem key={item}>
+                      <img src={item} alt='blogpics' />
+                      {/* <img
+                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt='blogpics'
+                    loading='lazy'
+                    className='blog-images'
+                  /> */}
+                    </ImageListItem>
+                  ))}
+                </ImageList>
+
+                <CardActions disableSpacing>
+                  <IconButton
+                    aria-label='add to favorites'
+                    onClick={() => {
+                      setHeart(!heart)
+                    }}
+                  >
+                    <FavoriteIcon
+                      className={heart ? 'heart-white' : 'heart-red'}
+                    />
+                  </IconButton>
+                  <IconButton aria-label='share'>
+                    <ShareIcon sx={{ color: red[50] }} />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            )
           )}
         </span>
       ))}
