@@ -5,10 +5,10 @@ import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import { Link } from 'react-router-dom'
 
-const Cards = ({ category }) => {
+const Cards = ({ headText }) => {
   return (
     <div className='cards-div'>
-      <h5>{category}</h5>
+      <h5>{headText}</h5>
       <div className='cards'>
         {CardList.map((list) => {
           return (

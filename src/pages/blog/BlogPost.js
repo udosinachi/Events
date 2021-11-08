@@ -16,178 +16,201 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
+import LinearProgress from '@mui/material/LinearProgress'
 
 const BlogPost = () => {
   const [toggle, setToggle] = useState('All')
   const [heart, setHeart] = useState(true)
   const [category, setCategory] = useState([])
   const [blog, setBlog] = useState([])
+  const [loader, setLoader] = useState(false)
 
   useEffect(() => {
+    setLoader(true)
     axios
       .get('https://eventplanningweb.herokuapp.com/category/allcategory')
       .then((res) => {
         setCategory(res.data.categories)
+        setLoader(false)
       })
       .catch((err) => {
         toast.error('Error please try again')
+        setLoader(false)
       })
 
     axios
       .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
       .then((res) => {
         setBlog(res.data.blogposts)
-        console.log(res.data.blogposts)
+        setLoader(false)
+      })
+      .catch((err) => {
+        toast.error('Unable to connect')
+        setLoader(false)
       })
   }, [])
 
   return (
     <div>
-      <div>
-        <button
-          className={toggle === 'All' ? 'filter-button-click' : 'filter-button'}
-          onClick={() => setToggle('All')}
-        >
-          All
-        </button>
-
-        {category.map((item) => {
-          return (
+      {loader === true ? (
+        <LinearProgress />
+      ) : (
+        <>
+          <div>
             <button
-              key={item._id}
               className={
-                toggle === item.name ? 'filter-button-click' : 'filter-button'
+                toggle === 'All' ? 'filter-button-click' : 'filter-button'
               }
-              onClick={() => setToggle(item.name)}
+              onClick={() => setToggle('All')}
             >
-              {item.name}
+              All
             </button>
-          )
-        })}
-      </div>
 
-      {blog.map((text) => (
-        <span key={text._id}>
-          {toggle === 'All' ? (
-            <Card className='blog-card'>
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-                    {text.name[0]}
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label='settings'>
-                    <MoreVertIcon sx={{ color: red[50] }} />
-                  </IconButton>
-                }
-                title={<span style={{ color: 'white' }}>{text.name}</span>}
-                subheader={
-                  <Moment format='D MMM YYYY' withTitle className='blog-date'>
-                    {text.createdAt}
-                  </Moment>
-                }
-              />
-              <CardContent>
-                <Typography variant='body2' color='white'>
-                  {text.text}
-                </Typography>
-              </CardContent>
-
-              <ImageList cols={2} className='blog-imagelist'>
-                {text.blogImage.map((item) => (
-                  <ImageListItem key={item}>
-                    <img src={item} alt='blogpics' />
-                    {/* <img
-                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt='blogpics'
-                    loading='lazy'
-                    className='blog-images'
-                  /> */}
-                  </ImageListItem>
-                ))}
-              </ImageList>
-
-              <CardActions disableSpacing>
-                <IconButton
-                  aria-label='add to favorites'
-                  onClick={() => {
-                    setHeart(!heart)
-                  }}
+            {category.map((item) => {
+              return (
+                <button
+                  key={item._id}
+                  className={
+                    toggle === item.name
+                      ? 'filter-button-click'
+                      : 'filter-button'
+                  }
+                  onClick={() => setToggle(item.name)}
                 >
-                  <FavoriteIcon
-                    className={heart ? 'heart-white' : 'heart-red'}
+                  {item.name}
+                </button>
+              )
+            })}
+          </div>
+
+          {blog.map((text) => (
+            <span key={text._id}>
+              {toggle === 'All' ? (
+                <Card className='blog-card'>
+                  <CardHeader
+                    avatar={
+                      <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
+                        {text.name[0]}
+                      </Avatar>
+                    }
+                    action={
+                      <IconButton aria-label='settings'>
+                        <MoreVertIcon sx={{ color: red[50] }} />
+                      </IconButton>
+                    }
+                    title={<span style={{ color: 'white' }}>{text.name}</span>}
+                    subheader={
+                      <Moment
+                        format='D MMM YYYY'
+                        withTitle
+                        className='blog-date'
+                      >
+                        {text.createdAt}
+                      </Moment>
+                    }
                   />
-                </IconButton>
-                <IconButton aria-label='share'>
-                  <ShareIcon sx={{ color: red[50] }} />
-                </IconButton>
-              </CardActions>
-            </Card>
-          ) : (
-            toggle === text.category && (
-              <Card className='blog-card'>
-                <CardHeader
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-                      {text.name[0]}
-                    </Avatar>
-                  }
-                  action={
-                    <IconButton aria-label='settings'>
-                      <MoreVertIcon sx={{ color: red[50] }} />
+                  <CardContent>
+                    <Typography variant='body2' color='white'>
+                      {text.text}
+                    </Typography>
+                  </CardContent>
+
+                  <ImageList cols={2} className='blog-imagelist'>
+                    {text.blogImage.map((item) => (
+                      <ImageListItem key={item}>
+                        <img
+                          src={item}
+                          alt='blogpics'
+                          className='blog-images'
+                        />
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+
+                  <CardActions disableSpacing>
+                    <IconButton
+                      aria-label='add to favorites'
+                      onClick={() => {
+                        setHeart(!heart)
+                      }}
+                    >
+                      <FavoriteIcon
+                        className={heart ? 'heart-white' : 'heart-red'}
+                      />
                     </IconButton>
-                  }
-                  title={<span style={{ color: 'white' }}>{text.name}</span>}
-                  subheader={
-                    <Moment format='D MMM YYYY' withTitle className='blog-date'>
-                      {text.createdAt}
-                    </Moment>
-                  }
-                />
-                <CardContent>
-                  <Typography variant='body2' color='white'>
-                    {text.text}
-                  </Typography>
-                </CardContent>
-
-                <ImageList cols={2} className='blog-imagelist'>
-                  {text.blogImage.map((item) => (
-                    <ImageListItem key={item}>
-                      <img src={item} alt='blogpics' />
-                      {/* <img
-                    src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt='blogpics'
-                    loading='lazy'
-                    className='blog-images'
-                  /> */}
-                    </ImageListItem>
-                  ))}
-                </ImageList>
-
-                <CardActions disableSpacing>
-                  <IconButton
-                    aria-label='add to favorites'
-                    onClick={() => {
-                      setHeart(!heart)
-                    }}
-                  >
-                    <FavoriteIcon
-                      className={heart ? 'heart-white' : 'heart-red'}
+                    <IconButton aria-label='share'>
+                      <ShareIcon sx={{ color: red[50] }} />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              ) : (
+                toggle === text.category && (
+                  <Card className='blog-card'>
+                    <CardHeader
+                      avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
+                          {text.name[0]}
+                        </Avatar>
+                      }
+                      action={
+                        <IconButton aria-label='settings'>
+                          <MoreVertIcon sx={{ color: red[50] }} />
+                        </IconButton>
+                      }
+                      title={
+                        <span style={{ color: 'white' }}>{text.name}</span>
+                      }
+                      subheader={
+                        <Moment
+                          format='D MMM YYYY'
+                          withTitle
+                          className='blog-date'
+                        >
+                          {text.createdAt}
+                        </Moment>
+                      }
                     />
-                  </IconButton>
-                  <IconButton aria-label='share'>
-                    <ShareIcon sx={{ color: red[50] }} />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            )
-          )}
-        </span>
-      ))}
-      <ToastContainer />
+                    <CardContent>
+                      <Typography variant='body2' color='white'>
+                        {text.text}
+                      </Typography>
+                    </CardContent>
+
+                    <ImageList cols={2} className='blog-imagelist'>
+                      {text.blogImage.map((item) => (
+                        <ImageListItem key={item}>
+                          <img
+                            src={item}
+                            alt='blogpics'
+                            className='blog-images'
+                          />
+                        </ImageListItem>
+                      ))}
+                    </ImageList>
+
+                    <CardActions disableSpacing>
+                      <IconButton
+                        aria-label='add to favorites'
+                        onClick={() => {
+                          setHeart(!heart)
+                        }}
+                      >
+                        <FavoriteIcon
+                          className={heart ? 'heart-white' : 'heart-red'}
+                        />
+                      </IconButton>
+                      <IconButton aria-label='share'>
+                        <ShareIcon sx={{ color: red[50] }} />
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+                )
+              )}
+            </span>
+          ))}
+          <ToastContainer />
+        </>
+      )}
     </div>
   )
 }
