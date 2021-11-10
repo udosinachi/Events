@@ -53,10 +53,12 @@ export default function Navbar() {
               Contact us
             </Link>
           </Button>
-          {/* <img src={localStorage.getItem('image')} alt='default' /> */}
           {localStorage.getItem('businessName') === name ? (
-            <div color='inherit'>
-              <ProfileDropdown name={name} />
+            <div color='inherit' className='user-nav'>
+              <ProfileDropdown
+                name={name}
+                image={localStorage.getItem('image')}
+              />
               {/* <Link to='/profile' className='link'></Link> */}
             </div>
           ) : (

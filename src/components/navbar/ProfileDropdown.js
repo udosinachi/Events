@@ -24,6 +24,7 @@ export default function ProfileDropdown(props) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
+        <img src={props.image} alt='user' className='user-image' />
         {props.name}
       </Button>
       <Menu

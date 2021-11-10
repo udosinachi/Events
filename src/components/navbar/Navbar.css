@@ -46,3 +46,11 @@
     display: block !important;
   }
 }
+.user-nav {
+  display: flex;
+}
+.user-image {
+  width: 30px;
+  height: 27px;
+  border-radius: 50%;
+}

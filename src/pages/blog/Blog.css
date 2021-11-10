@@ -27,7 +27,7 @@
 @media (max-width: 500px) {
   .blog-imagelist {
     width: 92%;
-    height: 180px;
+    /* height: 180px; */
   }
 }
 /* .blog-images {
