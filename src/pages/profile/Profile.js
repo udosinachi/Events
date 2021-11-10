@@ -38,18 +38,23 @@ const Profile = () => {
       <Navbar />
       <div className='profile'>
         <div className='profile-div'>
-          <p className='profile-text-header'> Chantal's Event Planning</p>
+          <p className='profile-text-header'>
+            {' '}
+            {localStorage.getItem('businessName')}
+          </p>
           <div className='profile-body'>
             <div className='profile-image-div'>
               <img
-                src='/assets/optician.jpg'
+                src={localStorage.getItem('image')}
                 alt='events'
                 className='profile-image'
               />
             </div>
             <div className='profile-text-div'>
               <div className='profile-text-subdiv'>
-                <h4 className='profile-h4'>Caterer</h4>
+                <h4 className='profile-h4'>
+                  {localStorage.getItem('category')}
+                </h4>
                 <p className='profile-p2'>
                   Lizards are a widespread group of squamate reptiles, with over
                   6,000 species, ranging across all continents except

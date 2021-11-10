@@ -73,6 +73,7 @@ export default function Signup() {
           localStorage.setItem('phoneNumber', res.data.user.phoneNumber)
           localStorage.setItem('password', res.data.user.password)
           localStorage.setItem('category', res.data.user.category)
+          localStorage.setItem('image', res.data.user.image)
           window.setTimeout(() => {
             history.push('/')
           }, 2000)

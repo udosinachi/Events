@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import Drawer from './Drawer'
@@ -13,7 +12,7 @@ import ProfileDropdown from './ProfileDropdown'
 // import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
-  const [name] = useState(localStorage.getItem('businessName'))
+  let name = localStorage.getItem('businessName')
 
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
@@ -53,27 +52,26 @@ export default function Navbar() {
               Contact us
             </Link>
           </Button>
-          {localStorage.getItem('businessName') === name ? (
-            <div color='inherit' className='user-nav'>
-              <ProfileDropdown
-                name={name}
-                image={localStorage.getItem('image')}
-              />
-              {/* <Link to='/profile' className='link'></Link> */}
-            </div>
-          ) : (
+          {name === null || undefined ? (
             <>
-              <Button color='inherit'>
+              <Button color='inherit' className='link1'>
                 <Link to='/login' className='link'>
                   Login
                 </Link>
               </Button>
-              <Button color='inherit'>
+              <Button color='inherit' className='link1'>
                 <Link to='/signup' className='link'>
-                  Sign Up
+                  Sign up
                 </Link>
               </Button>
             </>
+          ) : (
+            <div color='inherit' className='link1'>
+              <ProfileDropdown
+                name={name}
+                image={localStorage.getItem('image')}
+              />
+            </div>
           )}
         </Toolbar>
       </AppBar>
