@@ -9,6 +9,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import ProfileDropdown from './ProfileDropdown'
 // import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
@@ -54,11 +55,10 @@ export default function Navbar() {
           </Button>
           {/* <img src={localStorage.getItem('image')} alt='default' /> */}
           {localStorage.getItem('businessName') === name ? (
-            <Button color='inherit'>
-              <Link to='/about' className='link'>
-                {name}
-              </Link>
-            </Button>
+            <div color='inherit'>
+              <ProfileDropdown name={name} />
+              {/* <Link to='/profile' className='link'></Link> */}
+            </div>
           ) : (
             <>
               <Button color='inherit'>
