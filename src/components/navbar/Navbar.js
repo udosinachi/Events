@@ -55,19 +55,19 @@ export default function Navbar() {
           </Button>
           {name === null || undefined ? (
             <>
-              <Button color='inherit' className='link1'>
+              <Button color='inherit' className='link2'>
                 <Link to='/login' className='link'>
                   Login
                 </Link>
               </Button>
-              <Button color='inherit' className='link1'>
+              <Button color='inherit' className='link2'>
                 <Link to='/signup' className='link'>
                   Sign up
                 </Link>
               </Button>
             </>
           ) : (
-            <div color='inherit' className='link1'>
+            <div color='inherit' className='link2'>
               <ProfileDropdown
                 name={name}
                 image={localStorage.getItem('image')}
