@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import './Navbar.css'
 import Drawer from './Drawer'
 
@@ -12,7 +13,7 @@ import ProfileDropdown from './ProfileDropdown'
 // import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
-  let name = localStorage.getItem('businessName')
+  const [name] = useState(localStorage.getItem('businessName'))
 
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
