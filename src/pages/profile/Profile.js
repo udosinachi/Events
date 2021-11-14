@@ -10,8 +10,8 @@ import Button from '@mui/material/Button'
 import BlogToPost from '../blog/BlogToPost'
 
 const Profile = () => {
-  const [blog, setBlog] = useState([])
-  const [loader, setLoader] = useState(false)
+  // const [blog, setBlog] = useState([])
+  // const [loader, setLoader] = useState(false)
   const [postText, setPostText] = useState('')
 
   const handleSubmit = (event) => {

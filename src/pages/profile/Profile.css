@@ -17,7 +17,7 @@
   margin: 20px 0;
 }
 .profile-image {
-  max-width: 100%;
+  width: 90%;
   height: auto;
   margin-top: -9px;
   margin-bottom: 26px;
@@ -40,13 +40,24 @@
   .profile-text-subdiv {
     width: 100% !important;
   }
+  .profile-image-div {
+    display: flex;
+    justify-content: center;
+    width: 80% !important;
+    margin: auto;
+  }
+  .profile-text-div {
+    width: 100% !important;
+  }
 }
-/* .profile-image-div {
-  border: 3px solid black;
-} */
-/* .profile-text-div {
-  border: 3px solid pink;
-} */
+.profile-image-div {
+  /* border: 3px solid black; */
+  width: 50%;
+}
+.profile-text-div {
+  width: 50%;
+  /* border: 3px solid pink; */
+}
 .profile-text-subdiv {
   /* border: 3px solid yellow; */
   width: 90%;
