@@ -1,31 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import './Cards.css'
-import CardList from './CardList'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import { Link } from 'react-router-dom'
 
 const Cards = ({ headText }) => {
+  const [cardName, setCardName] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('https://eventplanningweb.herokuapp.com/auth/users')
+      .then((res) => {
+        let slice = res.data.users.slice(0, 4)
+        setCardName(slice)
+      })
+  }, [])
+
   return (
     <div className='cards-div'>
       <h5>{headText}</h5>
       <div className='cards'>
-        {CardList.map((list) => {
+        {cardName.map((list) => {
           return (
-            <div className='main-cards' key={list.id}>
+            <div className='main-cards' key={list._id}>
               <Link to='/profile' className='a'>
                 <div className='cards-image'>
-                  <img
-                    src='/assets/optician.jpg'
-                    alt='events'
-                    className='img'
-                  />
+                  <img src={list.image} alt='events' className='img' />
                 </div>
                 <div className='card-content'>
-                  <p className='card-p'>{list.name}</p>
-                  <h4 className='card-h4'>{list.text}</h4>
-                  <p className='card-p2'>{list.name}</p>
-                  <p className='card-p3'>{list.text}</p>
+                  <p className='card-p'>{list.businessName}</p>
+                  <h4 className='card-h4'>{list.email}</h4>
+                  <p className='card-p2'>{list.category}</p>
+                  <p className='card-p3'>{list.userText}</p>
                 </div>
               </Link>
             </div>
