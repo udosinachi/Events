@@ -49,14 +49,14 @@
 }
 
 .cards-image {
-  border: none !important;
+  width: fit-content;
+  border: none;
   position: relative;
   display: block;
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857;
   background-color: #25bcbc;
-  border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: border 0.2s ease-in-out;
   -o-transition: border 0.2s ease-in-out;
@@ -69,7 +69,6 @@
   top: 0;
   transform: skewY(2deg);
   transform-origin: 100% 0;
-
   background: inherit;
   content: '';
   display: block;
@@ -83,7 +82,6 @@
   bottom: 0;
   transform: skewY(-2deg);
   transform-origin: 100%;
-
   background: inherit;
   content: '';
   display: block;
