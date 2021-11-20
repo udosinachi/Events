@@ -18,7 +18,7 @@
   cursor: pointer;
   display: inline-block;
   height: 120%;
-  width: 24%;
+  width: 300px;
   padding-left: 5px;
   padding-right: 5px;
   border: none;
@@ -27,6 +27,9 @@
   .main-cards {
     width: 250px;
   }
+  .img {
+    width: 250px !important;
+  }
 }
 .a {
   color: #25bcbc;
@@ -34,7 +37,7 @@
   background-color: transparent;
 }
 .img {
-  max-width: 100%;
+  width: 280px;
   height: auto;
   margin-top: -9px;
   margin-bottom: 26px;
@@ -49,7 +52,7 @@
 }
 
 .cards-image {
-  width: fit-content;
+  /* width: fit-content; */
   border: none;
   position: relative;
   display: block;

@@ -28,6 +28,7 @@ const BlogPost = () => {
   const [blog, setBlog] = useState([])
   const [loader, setLoader] = useState(false)
   const [postText, setPostText] = useState('')
+  const [postImage, setPostImage] = useState([])
 
   const relosd = () => {
     axios
@@ -43,10 +44,53 @@ const BlogPost = () => {
       })
   }
 
+  let img = []
+
+  const addPic = (pic) => {
+    console.log(pic)
+    if (pic) {
+      if (
+        pic.type.includes('jpeg') ||
+        pic.type.includes('png') ||
+        pic.type.includes('jpg')
+      ) {
+        if (pic.size <= 500000) {
+          getBase64(pic).then((result) => {
+            pic['base64'] = result
+
+            const picture = JSON.parse(localStorage.getItem('post'))
+
+            if (picture) {
+              picture.push({ pic: result })
+              localStorage.setItem('post', picture)
+            } else {
+              localStorage.setItem('post', JSON.stringify([{ pic: result }]))
+            }
+
+            console.log(picture)
+          })
+        } else {
+          toast.warn('Image should be 500kb or less')
+        }
+      } else {
+        toast.warn('Picture must be in JPEG, PNG or JPG format')
+      }
+    }
+    console.log(img)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
+    let img = []
+    const imgs = JSON.parse(localStorage.getItem('post'))
+    for (let i = 0; i < imgs.length; i++) {
+      img.push(imgs[i].pic)
+    }
+    // console.log(imgs)
+
     const data = {
       text: postText,
+      blogImage: img,
     }
     const headers = {
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -89,6 +133,26 @@ const BlogPost = () => {
         setLoader(false)
       })
   }, [])
+
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let fileInfo
+      let baseURL = ''
+      // Make new FileReader
+      let reader = new FileReader()
+
+      // Convert the file to base64 text
+      reader.readAsDataURL(file)
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        console.log('Called', reader)
+        baseURL = reader.result
+        resolve(baseURL)
+      }
+    })
+  }
 
   return (
     <div>
@@ -138,6 +202,11 @@ const BlogPost = () => {
                 value={postText}
                 onChange={(e) => setPostText(e.target.value)}
               />
+              <input
+                type='file'
+                value={postImage}
+                onChange={(e) => addPic(e.target.files[0])}
+              />
               <Button
                 type='submit'
                 fullWidth
@@ -147,6 +216,7 @@ const BlogPost = () => {
               >
                 Post
               </Button>
+              <p>{postText}</p>
             </BlogToPost>
           </div>
 

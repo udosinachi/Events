@@ -11,6 +11,7 @@ import Contactus from './pages/contactus/Contactus'
 import About from './pages/about/About'
 import Profile from './pages/profile/Profile'
 import Blog from './pages/blog/Blog'
+import Showmore from './pages/showmore/Showmore'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/about' component={About} exact />
           <Route path='/profile' component={Profile} exact />
           <Route path='/blog' component={Blog} exact />
+          <Route path='/showmore' component={Showmore} exact />
         </Switch>
       </Router>
       <ToastContainer />

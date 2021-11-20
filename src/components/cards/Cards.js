@@ -40,14 +40,16 @@ const Cards = ({ headText }) => {
         })}
       </div>
       <div className='showmore-button'>
-        <Button
-          type='button'
-          variant='contained'
-          sx={{ mt: 1, mb: 2 }}
-          className='button1'
-        >
-          Show More
-        </Button>
+        <Link to='/showmore' className='a'>
+          <Button
+            type='button'
+            variant='contained'
+            sx={{ mt: 1, mb: 2 }}
+            className='button1'
+          >
+            Show More
+          </Button>
+        </Link>
       </div>
       <Divider />
     </div>
