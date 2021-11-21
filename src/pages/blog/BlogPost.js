@@ -19,7 +19,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
-import LinearProgress from '@mui/material/LinearProgress'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const BlogPost = () => {
   const [toggle, setToggle] = useState('All')
@@ -157,7 +157,7 @@ const BlogPost = () => {
   return (
     <div>
       {loader === true ? (
-        <LinearProgress />
+        <CircularProgress disableShrink />
       ) : (
         <>
           <div>
@@ -221,7 +221,7 @@ const BlogPost = () => {
           </div>
 
           {loader === true ? (
-            <LinearProgress />
+            <CircularProgress disableShrink />
           ) : (
             <>
               {blog.map((text) => (
