@@ -14,7 +14,8 @@ const Cards = ({ headText }) => {
         `https://eventplanningweb.herokuapp.com/auth/users/category/${headText}`
       )
       .then((res) => {
-        let slice = res.data.classify.slice(0, 4)
+        const reverse = res.data.classify.reverse()
+        let slice = reverse.slice(0, 4)
         setCardName(slice)
       })
   }, [headText])

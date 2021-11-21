@@ -6,7 +6,6 @@
 }
 .cards {
   display: flex;
-
   width: 90%;
   margin: 40px auto auto auto;
   /* border: 2px solid black; */
@@ -17,7 +16,7 @@
   text-align: left;
   cursor: pointer;
   display: inline-block;
-  height: 120%;
+  height: 100%;
   width: 300px;
   padding-left: 5px;
   padding-right: 5px;
@@ -37,8 +36,8 @@
   background-color: transparent;
 }
 .img {
-  width: 280px;
-  height: auto;
+  width: 100%;
+  max-height: 200px;
   margin-top: -9px;
   margin-bottom: 26px;
   -webkit-clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
@@ -131,6 +130,7 @@
   color: white;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  width: 250px;
 }
 .showmore-button {
   width: 90%;
