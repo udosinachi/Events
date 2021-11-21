@@ -6,10 +6,10 @@
 }
 .showmore-div {
   /* border: 3px solid green; */
-  width: 90%;
+  width: 87%;
   margin: auto;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .main-showmore {
@@ -17,7 +17,7 @@
   cursor: pointer;
   display: inline-block;
   height: 100%;
-  width: 24%;
+  width: 23%;
   padding-left: 5px;
   padding-right: 5px;
   border: none;

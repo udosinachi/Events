@@ -10,12 +10,14 @@ const Cards = ({ headText }) => {
 
   useEffect(() => {
     axios
-      .get('https://eventplanningweb.herokuapp.com/auth/users')
+      .get(
+        `https://eventplanningweb.herokuapp.com/auth/users/category/${headText}`
+      )
       .then((res) => {
-        let slice = res.data.users.slice(0, 4)
+        let slice = res.data.classify.slice(0, 4)
         setCardName(slice)
       })
-  }, [])
+  }, [headText])
 
   return (
     <div className='cards-div'>
@@ -40,7 +42,7 @@ const Cards = ({ headText }) => {
         })}
       </div>
       <div className='showmore-button'>
-        <Link to='/showmore' className='a'>
+        <Link to={`/showmore/${headText}`} className='a'>
           <Button
             type='button'
             variant='contained'

@@ -6,7 +6,7 @@
 }
 .cards {
   display: flex;
-  justify-content: space-between;
+
   width: 90%;
   margin: 40px auto auto auto;
   /* border: 2px solid black; */

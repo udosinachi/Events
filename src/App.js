@@ -27,7 +27,7 @@ function App() {
           <Route path='/about' component={About} exact />
           <Route path='/profile' component={Profile} exact />
           <Route path='/blog' component={Blog} exact />
-          <Route path='/showmore' component={Showmore} exact />
+          <Route path='/showmore/:cats' component={Showmore} exact />
         </Switch>
       </Router>
       <ToastContainer />

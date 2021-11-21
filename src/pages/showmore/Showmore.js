@@ -4,17 +4,20 @@ import './Showmore.css'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/footer/Footer'
 import Navbar from '../../components/navbar/Navbar'
+import { useParams } from 'react-router'
 
 const Showmore = () => {
   const [cardName, setCardName] = useState([])
 
+  const { cats } = useParams()
+
   useEffect(() => {
     axios
-      .get('https://eventplanningweb.herokuapp.com/auth/users')
+      .get(`https://eventplanningweb.herokuapp.com/auth/users/category/${cats}`)
       .then((res) => {
-        setCardName(res.data.users)
+        setCardName(res.data.classify)
       })
-  }, [])
+  }, [cats])
 
   return (
     <div className='showmore'>
