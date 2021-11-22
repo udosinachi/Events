@@ -39,6 +39,7 @@ export default function Drawer() {
       role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+      className='drawer-box'
     >
       <List>
         {[
@@ -57,6 +58,25 @@ export default function Drawer() {
           </span>
         ))}
       </List>
+      <div className='nav-footer'>
+        <div className='footer-div'>
+          <div className='nav-icons'>
+            <i className='fab fa-twitter-square'></i>
+            <i className='fab fa-facebook-square'></i>
+          </div>
+        </div>
+
+        <div className='footer-copyrights'>
+          <span>
+            Udosinachi provides the leading mobile linking platform with
+            solutions that unify user experience and measurement across
+            different devices, platforms, and channels.
+          </span>
+          <br />
+          <br />
+          <span>©2021 Udosinachi. All rights reserved.</span>
+        </div>
+      </div>
     </Box>
   )
 
