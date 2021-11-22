@@ -34,6 +34,7 @@
   color: #25bcbc;
   text-decoration: none;
   background-color: transparent;
+  outline: none;
 }
 .img {
   width: 100%;

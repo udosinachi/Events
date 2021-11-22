@@ -26,7 +26,9 @@ const Album = () => {
   return (
     <div className='album'>
       <div className='album-div'>
-        <h2>CATEGORIES OF SERVICES OFFERED</h2>
+        <div className='home-h2'>
+          <h2>CATEGORIES OF SERVICES OFFERED</h2>
+        </div>
         {loader === true ? (
           <div className='loader'>
             <CircularProgress className='main-loader' />

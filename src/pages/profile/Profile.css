@@ -10,6 +10,11 @@
   margin: auto;
   /* border: 3px solid white; */
 }
+@media (max-width: 700px) {
+  .profile-div {
+    width: 100%;
+  }
+}
 .profile-text-header {
   font-size: xx-large;
   text-align: center;
