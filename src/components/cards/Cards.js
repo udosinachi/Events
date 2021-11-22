@@ -27,7 +27,7 @@ const Cards = ({ headText }) => {
         {cardName.map((list) => {
           return (
             <div className='main-cards' key={list._id}>
-              <Link to='/profile' className='a'>
+              <Link to={`/profile/${list._id}`} className='a'>
                 <div className='cards-image'>
                   <img src={list.image} alt='events' className='img' />
                 </div>

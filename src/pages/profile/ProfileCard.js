@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../blog/Blog.css'
+import axios from 'axios'
+import { useParams } from 'react-router'
 
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -15,19 +17,31 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
 import BlogImage from '../blog/BlogImage'
 import BlogText from '../blog/BlogText'
+import Moment from 'react-moment'
 
 const ProfileCard = () => {
   const [heart, setHeart] = useState(true)
+  const [userBlog, setUserBlog] = useState([])
+
+  const { id } = useParams()
+
+  useEffect(() => {
+    axios
+      .get(`https://eventplanningweb.herokuapp.com/blog/user/${id}`)
+      .then((res) => {
+        setUserBlog(res.data.user)
+      })
+  }, [id])
 
   return (
     <div>
-      {BlogText.map((text) => (
-        <span key={text.id}>
+      {userBlog.map((text) => (
+        <span key={text._id}>
           <Card className='blog-card'>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-                  {text.avatar}
+                  {text.name[0]}
                 </Avatar>
               }
               action={
@@ -36,20 +50,25 @@ const ProfileCard = () => {
                 </IconButton>
               }
               title={<span style={{ color: 'white' }}>{text.name}</span>}
-              subheader={<span className='blog-date'>{text.date}</span>}
+              subheader={
+                <span className='blog-date'>
+                  <Moment format='D MMM YYYY' withTitle className='blog-date'>
+                    {text.createdAt}
+                  </Moment>
+                </span>
+              }
             />
             <CardContent>
               <Typography variant='body2' color='white'>
-                {text.paragraph}
+                {text.text}
               </Typography>
             </CardContent>
 
             <ImageList cols={2} className='blog-imagelist'>
-              {BlogImage.map((item) => (
-                <ImageListItem key={item.id}>
+              {text.blogImage.map((item) => (
+                <ImageListItem key={item}>
                   <img
-                    src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    src={item}
                     alt='blogpics'
                     loading='lazy'
                     className='blog-images'

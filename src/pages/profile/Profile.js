@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Profile.css'
 import Navbar from '../../components/navbar/Navbar'
@@ -8,8 +8,20 @@ import { TextField } from '@mui/material'
 import { toast } from 'react-toastify'
 import Button from '@mui/material/Button'
 import BlogToPost from '../blog/BlogToPost'
+import { useParams } from 'react-router'
 
 const Profile = () => {
+  const [profile, setProfile] = useState({})
+  const { id } = useParams()
+
+  useEffect(() => {
+    axios
+      .get(`https://eventplanningweb.herokuapp.com/auth/users/${id}`)
+      .then((res) => {
+        setProfile(res.data.userId)
+      })
+  }, [id])
+
   // const [blog, setBlog] = useState([])
   // const [loader, setLoader] = useState(false)
   const [postText, setPostText] = useState('')
@@ -38,33 +50,16 @@ const Profile = () => {
       <Navbar />
       <div className='profile'>
         <div className='profile-div'>
-          <p className='profile-text-header'>
-            {' '}
-            {localStorage.getItem('businessName')}
-          </p>
+          <p className='profile-text-header'>{profile.businessName}</p>
           <div className='profile-body'>
             <div className='profile-image-div'>
-              <img
-                src={localStorage.getItem('image')}
-                alt='events'
-                className='profile-image'
-              />
+              <img src={profile.image} alt='events' className='profile-image' />
             </div>
             <div className='profile-text-div'>
               <div className='profile-text-subdiv'>
-                <h4 className='profile-h4'>
-                  {localStorage.getItem('category')}
-                </h4>
-                <p className='profile-p2'>
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except
-                  Antarctica'
-                </p>
-                <p className='profile-p3'>
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except
-                  Antarctica'
-                </p>
+                <h4 className='profile-h4'>{profile.category}</h4>
+                <p className='profile-p2'>{profile.fullName}</p>
+                <p className='profile-p3'>{profile.userText}</p>
               </div>
             </div>
           </div>

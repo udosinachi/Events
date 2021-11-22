@@ -25,7 +25,7 @@ function App() {
           <Route path='/signup' component={Signup} exact />
           <Route path='/contact' component={Contactus} exact />
           <Route path='/about' component={About} exact />
-          <Route path='/profile' component={Profile} exact />
+          <Route path='/profile/:id' component={Profile} exact />
           <Route path='/blog' component={Blog} exact />
           <Route path='/showmore/:cats' component={Showmore} exact />
         </Switch>
