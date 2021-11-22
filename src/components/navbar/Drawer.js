@@ -15,6 +15,7 @@ import UpdateIcon from '@mui/icons-material/Update'
 import IconButton from '@mui/material/IconButton'
 import { blue } from '@mui/material/colors'
 import { Link } from 'react-router-dom'
+import { Divider } from '@mui/material'
 
 export default function Drawer() {
   const [state, setState] = React.useState({
@@ -41,12 +42,32 @@ export default function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
       className='drawer-box'
     >
+      <div>
+        <h3 className='drawer-h3'>Udosinachi</h3>
+      </div>
+      <Divider />
       <List>
         {[
-          { name: 'Home', icon: <HomeIcon />, to: '/' },
-          { name: 'Blog', icon: <UpdateIcon />, to: '/blog' },
-          { name: 'About', icon: <InfoIcon />, to: '/about' },
-          { name: 'Contact Us', icon: <ContactIcon />, to: '/contact' },
+          {
+            name: 'Home',
+            icon: <HomeIcon className='drawer-smallicons' />,
+            to: '/',
+          },
+          {
+            name: 'Blog',
+            icon: <UpdateIcon className='drawer-smallicons' />,
+            to: '/blog',
+          },
+          {
+            name: 'About',
+            icon: <InfoIcon className='drawer-smallicons' />,
+            to: '/about',
+          },
+          {
+            name: 'Contact Us',
+            icon: <ContactIcon className='drawer-smallicons' />,
+            to: '/contact',
+          },
         ].map((text) => (
           <span key={text.name}>
             <Link to={`${text.to}`} className='b'>
@@ -58,6 +79,7 @@ export default function Drawer() {
           </span>
         ))}
       </List>
+      <Divider />
       <div className='nav-footer'>
         <div className='footer-div'>
           <div className='nav-icons'>
