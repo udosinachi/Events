@@ -10,7 +10,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import ProfileDropdown from './ProfileDropdown'
-// import IconButton from '@mui/material/IconButton'
 
 export default function Navbar() {
   let slice = localStorage.getItem('businessName').split(' ')[0]
@@ -20,15 +19,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }} className='skewing'>
       <AppBar position='fixed' className='nav'>
         <Toolbar>
-          {/* <IconButton
-            size='large'
-            edge='start'
-            color='inherit'
-            aria-label='menu'
-            sx={{ mr: 2 }}
-          > */}
           <Drawer className='drawer' />
-          {/* </IconButton> */}
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             <Link to='/' className='link'>
               Udosinachi

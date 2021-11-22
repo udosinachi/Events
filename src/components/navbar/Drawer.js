@@ -3,20 +3,18 @@ import './Navbar.css'
 
 import Box from '@mui/material/Box'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
-// import Button from '@mui/material/Button'
 import List from '@mui/material/List'
-import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import LoginIcon from '@mui/icons-material/Login'
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import MenuIcon from '@mui/icons-material/Menu'
 import HomeIcon from '@mui/icons-material/Home'
 import ContactIcon from '@mui/icons-material/ContactPage'
 import InfoIcon from '@mui/icons-material/Info'
 import UpdateIcon from '@mui/icons-material/Update'
 import IconButton from '@mui/material/IconButton'
+import { blue } from '@mui/material/colors'
+import { Link } from 'react-router-dom'
 
 export default function Drawer() {
   const [state, setState] = React.useState({
@@ -37,37 +35,26 @@ export default function Drawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: 290 }}
       role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
         {[
-          { name: 'Home', icon: <HomeIcon /> },
-          { name: 'Blog', icon: <UpdateIcon /> },
-          { name: 'About', icon: <InfoIcon /> },
-          { name: 'Contact Us', icon: <ContactIcon /> },
+          { name: 'Home', icon: <HomeIcon />, to: '/' },
+          { name: 'Blog', icon: <UpdateIcon />, to: '/blog' },
+          { name: 'About', icon: <InfoIcon />, to: '/about' },
+          { name: 'Contact Us', icon: <ContactIcon />, to: '/contact' },
         ].map((text) => (
-          <ListItem button key={text.name}>
-            <ListItemIcon>
-              {text.icon}
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-            </ListItemIcon>
-            <ListItemText primary={text.name} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {[
-          { name: 'Login', Icon: <LoginIcon /> },
-          { name: 'Sign Up', Icon: <AppRegistrationIcon /> },
-        ].map((text) => (
-          <ListItem button key={text.name}>
-            <ListItemIcon>{text.Icon}</ListItemIcon>
-            <ListItemText primary={text.name} />
-          </ListItem>
+          <span key={text.name}>
+            <Link to={`${text.to}`} className='b'>
+              <ListItem button>
+                <ListItemIcon>{text.icon}</ListItemIcon>
+                <ListItemText primary={text.name} />
+              </ListItem>
+            </Link>
+          </span>
         ))}
       </List>
     </Box>
@@ -84,7 +71,7 @@ export default function Drawer() {
             aria-label='menu'
             onClick={toggleDrawer(anchor, true)}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: blue[500] }} className='nav-icon' />
           </IconButton>
           <SwipeableDrawer
             anchor={anchor}
