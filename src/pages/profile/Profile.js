@@ -9,16 +9,20 @@ import { toast } from 'react-toastify'
 import Button from '@mui/material/Button'
 import BlogToPost from '../blog/BlogToPost'
 import { useParams } from 'react-router'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Profile = () => {
   const [profile, setProfile] = useState({})
+  const [loader, setLoader] = useState(false)
   const { id } = useParams()
 
   useEffect(() => {
+    setLoader(true)
     axios
       .get(`https://eventplanningweb.herokuapp.com/auth/users/${id}`)
       .then((res) => {
         setProfile(res.data.userId)
+        setLoader(false)
       })
   }, [id])
 
@@ -48,21 +52,34 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
+
       <div className='profile'>
         <div className='profile-div'>
-          <p className='profile-text-header'>{profile.businessName}</p>
-          <div className='profile-body'>
-            <div className='profile-image-div'>
-              <img src={profile.image} alt='events' className='profile-image' />
+          {loader === true ? (
+            <div className='loader'>
+              <CircularProgress className='main-loader' />
             </div>
-            <div className='profile-text-div'>
-              <div className='profile-text-subdiv'>
-                <h4 className='profile-h4'>{profile.category}</h4>
-                <p className='profile-p2'>{profile.fullName}</p>
-                <p className='profile-p3'>{profile.userText}</p>
+          ) : (
+            <>
+              <p className='profile-text-header'>{profile.businessName}</p>
+              <div className='profile-body'>
+                <div className='profile-image-div'>
+                  <img
+                    src={profile.image}
+                    alt='events'
+                    className='profile-image'
+                  />
+                </div>
+                <div className='profile-text-div'>
+                  <div className='profile-text-subdiv'>
+                    <h4 className='profile-h4'>{profile.category}</h4>
+                    <p className='profile-p2'>{profile.fullName}</p>
+                    <p className='profile-p3'>{profile.userText}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
 
           <div>
             <BlogToPost head='create a new post'>

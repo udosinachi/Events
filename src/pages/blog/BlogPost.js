@@ -157,7 +157,9 @@ const BlogPost = () => {
   return (
     <div>
       {loader === true ? (
-        <CircularProgress disableShrink />
+        <div className='loader'>
+          <CircularProgress className='main-loader' />
+        </div>
       ) : (
         <>
           <div>
@@ -221,7 +223,9 @@ const BlogPost = () => {
           </div>
 
           {loader === true ? (
-            <CircularProgress disableShrink />
+            <div className='loader'>
+              <CircularProgress className='main-loader' />
+            </div>
           ) : (
             <>
               {blog.map((text) => (

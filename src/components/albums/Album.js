@@ -3,7 +3,7 @@ import axios from 'axios'
 import './Album.css'
 import Cards from '../cards/Cards'
 import { toast } from 'react-toastify'
-import LinearProgress from '@mui/material/LinearProgress'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Album = () => {
   const [category, setCategory] = useState([])
@@ -28,7 +28,9 @@ const Album = () => {
       <div className='album-div'>
         <h2>CATEGORIES OF SERVICES OFFERED</h2>
         {loader === true ? (
-          <LinearProgress />
+          <div className='loader'>
+            <CircularProgress className='main-loader' />
+          </div>
         ) : (
           <>
             {category.map((cat) => {

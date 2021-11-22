@@ -12,13 +12,15 @@ import About from './pages/about/About'
 import Profile from './pages/profile/Profile'
 import Blog from './pages/blog/Blog'
 import Showmore from './pages/showmore/Showmore'
+import ScrollToTop from './Top'
+import UserProfile from './pages/userprofile/UserProfile'
 
 function App() {
   return (
     <div>
       <Router>
         {/* <Navbar /> */}
-
+        <ScrollToTop />
         <Switch>
           <Route path='/' component={Home} exact />
           <Route path='/login' component={Login} exact />
@@ -28,6 +30,7 @@ function App() {
           <Route path='/profile/:id' component={Profile} exact />
           <Route path='/blog' component={Blog} exact />
           <Route path='/showmore/:cats' component={Showmore} exact />
+          <Route path='/user-profile' component={UserProfile} exact />
         </Switch>
       </Router>
       <ToastContainer />
