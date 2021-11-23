@@ -78,3 +78,21 @@
 .main-loader {
   width: 700px;
 }
+.post-input {
+  outline: none;
+}
+.post-text {
+  font-weight: 600;
+}
+.main-posting-div {
+  border: 3px solid grey;
+  display: flex;
+  padding: 10px;
+}
+.posting-imgdiv {
+  width: 25%;
+  border: 3px solid red;
+}
+.posting-img {
+  width: 100%;
+}

@@ -63,8 +63,12 @@ const BlogPost = () => {
                 return false
               }
             }
-            setIt((oldArray) => [...oldArray, result])
-            console.log(it)
+            if (it.length <= 3) {
+              setIt((oldArray) => [...oldArray, result])
+              console.log(it)
+            } else {
+              toast.warn('Not more than 4 pics can be posted')
+            }
           })
         } else {
           toast.warn('Image should be 500kb or less')
@@ -92,6 +96,8 @@ const BlogPost = () => {
       })
       .then((res) => {
         toast.success('Post Successful')
+        setPostText('')
+        setIt([])
         relosd()
       })
       .catch((err) => {
@@ -139,7 +145,7 @@ const BlogPost = () => {
       // on reader load somthing...
       reader.onload = () => {
         // Make a fileInfo Object
-        console.log('Called', reader)
+        // console.log('Called', reader)
         baseURL = reader.result
         resolve(baseURL)
       }
@@ -182,9 +188,10 @@ const BlogPost = () => {
           </div>
 
           <div>
-            <BlogToPost head='create a new post'>
+            <BlogToPost head='Create a new post'>
               {' '}
               <TextField
+                className='post-input'
                 margin='normal'
                 required
                 fullWidth
@@ -192,7 +199,7 @@ const BlogPost = () => {
                 label='Post Text'
                 name='postText'
                 autoComplete='postText'
-                autoFocus
+                // autoFocus
                 value={postText}
                 onChange={(e) => setPostText(e.target.value)}
               />
@@ -210,9 +217,19 @@ const BlogPost = () => {
               >
                 Post
               </Button>
-              <p>{postText}</p>
-              <div>
-                <img src={postImage} alt='hj' />
+              <p className='post-text'>{postText}</p>
+              <div className='main-posting-div'>
+                {!it || it.length === 0 ? (
+                  <div>No Picture has been added</div>
+                ) : (
+                  <>
+                    {it.map((peg) => (
+                      <div key={peg} className='posting-imgdiv'>
+                        <img src={peg} alt='jh' className='posting-img' />
+                      </div>
+                    ))}{' '}
+                  </>
+                )}
               </div>
             </BlogToPost>
           </div>
