@@ -41,7 +41,7 @@ export default function Login() {
           setPassword('')
           window.setTimeout(() => {
             history.push('/')
-          }, 3000)
+          }, 1000)
 
           localStorage.setItem('token', res.data.token)
           localStorage.setItem('id', res.data._id)

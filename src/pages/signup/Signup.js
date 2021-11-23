@@ -76,7 +76,7 @@ export default function Signup() {
           localStorage.setItem('image', res.data.user.image)
           window.setTimeout(() => {
             history.push('/')
-          }, 2000)
+          }, 1000)
         } else {
           toast.error(res.data.message)
         }

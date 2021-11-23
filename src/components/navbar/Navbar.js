@@ -45,7 +45,7 @@ export default function Navbar() {
               Contact us
             </Link>
           </Button>
-          {name === null || undefined ? (
+          {!name ? (
             <>
               <Button color='inherit' className='link2'>
                 <Link to='/login' className='link'>
