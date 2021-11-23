@@ -27,8 +27,10 @@ const BlogPost = () => {
   const [category, setCategory] = useState([])
   const [blog, setBlog] = useState([])
   const [loader, setLoader] = useState(false)
+  // const [check, setCheck] = useState(false)
   const [postText, setPostText] = useState('')
-  const [postImage, setPostImage] = useState([])
+  const [postImage] = useState([])
+  const [it, setIt] = useState([])
 
   const relosd = () => {
     axios
@@ -44,8 +46,6 @@ const BlogPost = () => {
       })
   }
 
-  let img = []
-
   const addPic = (pic) => {
     console.log(pic)
     if (pic) {
@@ -57,17 +57,14 @@ const BlogPost = () => {
         if (pic.size <= 500000) {
           getBase64(pic).then((result) => {
             pic['base64'] = result
-
-            const picture = JSON.parse(localStorage.getItem('post'))
-
-            if (picture) {
-              picture.push({ pic: result })
-              localStorage.setItem('post', picture)
-            } else {
-              localStorage.setItem('post', JSON.stringify([{ pic: result }]))
+            for (let i = 0; i < it.length; i++) {
+              if (it[i] === result) {
+                toast.error('Image already selected')
+                return false
+              }
             }
-
-            console.log(picture)
+            setIt((oldArray) => [...oldArray, result])
+            console.log(it)
           })
         } else {
           toast.warn('Image should be 500kb or less')
@@ -76,22 +73,16 @@ const BlogPost = () => {
         toast.warn('Picture must be in JPEG, PNG or JPG format')
       }
     }
-    console.log(img)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    let img = []
-    const imgs = JSON.parse(localStorage.getItem('post'))
-    for (let i = 0; i < imgs.length; i++) {
-      img.push(imgs[i].pic)
-    }
-    // console.log(imgs)
 
     const data = {
       text: postText,
-      blogImage: img,
+      blogImage: it,
     }
+    console.log(data)
     const headers = {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     }
@@ -109,6 +100,7 @@ const BlogPost = () => {
   }
 
   useEffect(() => {
+    localStorage.setItem('post', '1')
     setLoader(true)
     axios
       .get('https://eventplanningweb.herokuapp.com/category/allcategory')
@@ -136,7 +128,7 @@ const BlogPost = () => {
 
   const getBase64 = (file) => {
     return new Promise((resolve) => {
-      let fileInfo
+      // let fileInfo
       let baseURL = ''
       // Make new FileReader
       let reader = new FileReader()
@@ -219,6 +211,9 @@ const BlogPost = () => {
                 Post
               </Button>
               <p>{postText}</p>
+              <div>
+                <img src={postImage} alt='hj' />
+              </div>
             </BlogToPost>
           </div>
 
