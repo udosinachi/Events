@@ -79,6 +79,16 @@ const BlogPost = () => {
     }
   }
 
+  const cancelHandler = (img) => {
+    let curr = []
+    for (let i = 0; i < it.length; i++) {
+      if (it[i] !== img) {
+        curr.push(it[i])
+      }
+      setIt(curr)
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -151,6 +161,8 @@ const BlogPost = () => {
       }
     })
   }
+
+  // const cancelHandler = (img) => {}
 
   return (
     <div>
@@ -226,6 +238,7 @@ const BlogPost = () => {
                     {it.map((peg) => (
                       <div key={peg} className='posting-imgdiv'>
                         <img src={peg} alt='jh' className='posting-img' />
+                        <button onClick={() => cancelHandler(peg)}>X</button>
                       </div>
                     ))}{' '}
                   </>

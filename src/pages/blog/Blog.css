@@ -85,13 +85,22 @@
   font-weight: 600;
 }
 .main-posting-div {
-  border: 3px solid grey;
+  border: 3px solid silver;
   display: flex;
   padding: 10px;
+  border-radius: 3px;
+  color: silver;
 }
 .posting-imgdiv {
   width: 25%;
   border: 3px solid red;
+  position: relative;
+}
+.posting-imgdiv button {
+  position: absolute;
+  right: -4px;
+  cursor: pointer;
+  border-radius: 50%;
 }
 .posting-img {
   width: 100%;
