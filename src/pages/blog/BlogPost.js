@@ -33,6 +33,7 @@ const BlogPost = () => {
   const [it, setIt] = useState([])
 
   const relosd = () => {
+    setLoader(true)
     axios
       .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
       .then((res) => {
@@ -81,6 +82,7 @@ const BlogPost = () => {
 
   const cancelHandler = (img) => {
     let curr = []
+
     for (let i = 0; i < it.length; i++) {
       if (it[i] !== img) {
         curr.push(it[i])
@@ -128,7 +130,7 @@ const BlogPost = () => {
         toast.error('Error please try again')
         setLoader(false)
       })
-
+    setLoader(true)
     axios
       .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
       .then((res) => {
@@ -161,8 +163,6 @@ const BlogPost = () => {
       }
     })
   }
-
-  // const cancelHandler = (img) => {}
 
   return (
     <div>
@@ -276,7 +276,7 @@ const BlogPost = () => {
                         }
                         subheader={
                           <Moment
-                            format='D MMM YYYY'
+                            format='D MMM YYYY HH:mm'
                             withTitle
                             className='blog-date'
                           >
@@ -292,12 +292,8 @@ const BlogPost = () => {
 
                       <ImageList cols={2} className='blog-imagelist'>
                         {text.blogImage.map((item) => (
-                          <ImageListItem key={item}>
-                            <img
-                              src={item}
-                              alt='blogpics'
-                              className='blog-images'
-                            />
+                          <ImageListItem key={item} className='blog-images'>
+                            <img src={item} alt='blogpics' />
                           </ImageListItem>
                         ))}
                       </ImageList>
@@ -340,7 +336,7 @@ const BlogPost = () => {
                           }
                           subheader={
                             <Moment
-                              format='D MMM YYYY'
+                              format='D MMM YYYY HH:mm'
                               withTitle
                               className='blog-date'
                             >

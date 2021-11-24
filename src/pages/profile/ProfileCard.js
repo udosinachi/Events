@@ -55,7 +55,7 @@ const ProfileCard = () => {
                   subheader={
                     <span className='blog-date'>
                       <Moment
-                        format='D MMM YYYY'
+                        format='D MMM YYYY HH:mm'
                         withTitle
                         className='blog-date'
                       >

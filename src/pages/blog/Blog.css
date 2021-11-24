@@ -5,13 +5,21 @@
   overflow: hidden;
 }
 .blog-div {
-  width: 70%;
+  width: 80%;
   margin: 20px auto;
   /* border: 3px solid red; */
 }
+.blog-images {
+  height: 200px !important;
+  overflow: hidden;
+}
+
 @media (max-width: 700px) {
   .blog-div {
     width: 95%;
+  }
+  .blog-images {
+    height: 164px !important;
   }
 }
 .blog-card {
@@ -72,11 +80,13 @@
 }
 .loader {
   width: 100%;
+  height: 300px;
   display: flex;
+  /* border: 3px solid red; */
   justify-content: center;
 }
 .main-loader {
-  width: 700px;
+  margin: auto;
 }
 .post-input {
   outline: none;
