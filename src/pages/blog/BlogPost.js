@@ -201,25 +201,29 @@ const BlogPost = () => {
 
           <div>
             <BlogToPost head='Create a new post'>
-              {' '}
-              <TextField
-                className='post-input'
-                margin='normal'
-                required
-                fullWidth
-                id='postText'
-                label='Post Text'
-                name='postText'
-                autoComplete='postText'
-                // autoFocus
-                value={postText}
-                onChange={(e) => setPostText(e.target.value)}
-              />
-              <input
-                type='file'
-                value={postImage}
-                onChange={(e) => addPic(e.target.files[0])}
-              />
+              <div className='ii'>
+                <TextField
+                  className='post-input'
+                  margin='normal'
+                  required
+                  fullWidth
+                  id='postText'
+                  label='Post Text'
+                  name='postText'
+                  autoComplete='postText'
+                  // autoFocus
+                  value={postText}
+                  onChange={(e) => setPostText(e.target.value)}
+                />
+                <label className='input-file'>
+                  Select an image...
+                  <input
+                    type='file'
+                    value={postImage}
+                    onChange={(e) => addPic(e.target.files[0])}
+                  />
+                </label>
+              </div>
               <Button
                 type='submit'
                 fullWidth
