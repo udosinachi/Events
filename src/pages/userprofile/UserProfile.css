@@ -1,7 +1,49 @@
 .user-profile {
   overflow: hidden;
+  background-color: #20364b;
 }
 .user-profile-div {
-  padding-top: 100px;
-  background-color: #20364b;
+  padding-top: 150px;
+  padding-bottom: 50px;
+  margin: auto;
+  width: 80%;
+  /* border: 3px solid orange; */
+}
+.user-div {
+  /* border: 3px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.user-profile-image {
+  /* border: 3px solid gold; */
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+.user-names {
+  /* border: 3px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
+}
+.user-names span {
+  padding: 5px 0;
+}
+.bn {
+  font-size: 25px;
+  font-weight: 700;
+  color: white;
+}
+.fn {
+  color: whitesmoke;
+}
+.edit-btn {
+  position: absolute;
+  right: 0;
+}
+.user-profile-text-div {
+  color: white;
 }
