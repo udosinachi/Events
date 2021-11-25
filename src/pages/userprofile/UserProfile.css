@@ -15,11 +15,15 @@
   flex-wrap: wrap;
   position: relative;
 }
-
+.user-image-div {
+  /* border: 3px solid green; */
+  width: 200px;
+  height: 200px;
+}
 .user-profile-image {
   /* border: 3px solid gold; */
   border-radius: 50%;
-  width: 200px;
+  max-width: 100%;
   height: 200px;
 }
 .user-names {
@@ -45,5 +49,8 @@
   right: 0;
 }
 .user-profile-text-div {
+  color: white;
+}
+.user-personal-info {
   color: white;
 }

@@ -45,20 +45,26 @@ const UserProfile = () => {
         <div className='user-div'>
           <div className='user-image-div'>
             <img
-              src='/assets/optician.jpg'
+              src={localStorage.getItem('image')}
               alt='profile'
               className='user-profile-image'
             />
           </div>
           <div className='user-names'>
-            <span className='bn'>Business Name</span>
-            <span className='fn'>Full Name</span>
+            <span className='bn'>{localStorage.getItem('businessName')}</span>
+            <span className='fn'>{localStorage.getItem('fullName')}</span>
           </div>
           <div className='edit-btn'>
             <Button variant='contained' startIcon={<EditIcon />}>
               Edit
             </Button>
           </div>
+        </div>
+
+        <div className='user-personal-info'>
+          <p>Email: {localStorage.getItem('email')}</p>
+          <p>Phone Number: {localStorage.getItem('phoneNumber')}</p>
+          <p>Category: {localStorage.getItem('category')}</p>
         </div>
 
         <div className='user-profile-text-div'>
