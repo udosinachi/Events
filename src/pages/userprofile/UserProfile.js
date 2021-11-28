@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './UserProfile.css'
 import Footer from '../../components/footer/Footer'
 import Navbar from '../../components/navbar/Navbar'
-import { Button, CircularProgress } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit'
+import { Button, CircularProgress, TextField } from '@mui/material'
 
 import axios from 'axios'
 import Card from '@mui/material/Card'
@@ -19,11 +18,27 @@ import ShareIcon from '@mui/icons-material/Share'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
 import Moment from 'react-moment'
+import EditUserProfile from '../edituserprofile/EditUserProfile'
+import SaveIcon from '@mui/icons-material/Save'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { toast } from 'react-toastify'
 
 const UserProfile = () => {
   const [heart, setHeart] = useState(true)
   const [userBlog, setUserBlog] = useState([])
   const [loader, setLoader] = useState(false)
+  const [fullName, setFullName] = useState(localStorage.getItem('fullName'))
+  const [businessName, setBusinessName] = useState(
+    localStorage.getItem('businessName')
+  )
+  const [email, setEmail] = useState(localStorage.getItem('email'))
+  const [phoneNumber, setPhoneNumber] = useState(
+    localStorage.getItem('phoneNumber')
+  )
+  const [userText, setUserText] = useState(localStorage.getItem(''))
+  const [category, setCategory] = useState(localStorage.getItem('category'))
+  const [career, setCareer] = useState([])
+  const [reload, setReload] = useState(true)
 
   useEffect(() => {
     setLoader(true)
@@ -37,7 +52,55 @@ const UserProfile = () => {
         setUserBlog(res.data.user)
         setLoader(false)
       })
+
+    axios
+      .get('https://eventplanningweb.herokuapp.com/category/allcategory')
+      .then((res) => {
+        setCareer(res.data.categories)
+      })
+      .catch((err) => {
+        toast.error('Unable to Display Categories')
+      })
   }, [])
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    const data = {
+      fullName,
+      businessName,
+      email,
+      phoneNumber,
+      category,
+      userText,
+    }
+
+    console.log(data)
+    axios
+      .post('https://eventplanningweb.herokuapp.com/auth/users/edit', data, {
+        headers: headers,
+      })
+      .then((res) => {
+        if (res.data.hasError === false) {
+          toast.success('Successfully updated')
+          localStorage.setItem('fullName', res.data.edit.fullName)
+          localStorage.setItem('businessName', res.data.edit.businessName)
+          localStorage.setItem('email', res.data.edit.email)
+          localStorage.setItem('phoneNumber', res.data.edit.phoneNumber)
+          localStorage.setItem('category', res.data.edit.category)
+          localStorage.setItem('image', res.data.edit.image)
+          setReload(!reload)
+        } else {
+          toast.error(res.data.message)
+        }
+      })
+      .catch((res) => {
+        toast.error('Unable to update')
+      })
+  }
+
   return (
     <div className='user-profile'>
       <Navbar />
@@ -55,9 +118,76 @@ const UserProfile = () => {
             <span className='fn'>{localStorage.getItem('fullName')}</span>
           </div>
           <div className='edit-btn'>
-            <Button variant='contained' startIcon={<EditIcon />}>
-              Edit
-            </Button>
+            <EditUserProfile header='Edit Profile'>
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  fullWidth
+                  label='Business Name'
+                  id='fullWidth'
+                  className='edit-inputs'
+                  value={businessName}
+                  onChange={(e) => setBusinessName(e.target.value)}
+                />
+                <TextField
+                  fullWidth
+                  label='Full Name'
+                  id='fullWidth'
+                  className='edit-inputs'
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+                <TextField
+                  fullWidth
+                  label='Email'
+                  id='fullWidth'
+                  className='edit-inputs'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <FormControl fullWidth>
+                  <InputLabel id='demo-simple-select-label'>
+                    Category *
+                  </InputLabel>
+
+                  <Select
+                    labelId='demo-simple-select-label'
+                    id='demo-simple-select'
+                    label='Category *'
+                    onChange={(e) => setCategory(e.target.value)}
+                    value={category}
+                  >
+                    {career.map((cat) => (
+                      <MenuItem key={cat._id} value={cat.name}>
+                        {cat.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <TextField
+                  fullWidth
+                  label='Phone Number'
+                  id='fullWidth'
+                  className='edit-inputs'
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+                <TextField
+                  fullWidth
+                  label='User Text'
+                  id='fullWidth'
+                  className='edit-inputs'
+                  value={userText}
+                  onChange={(e) => setUserText(e.target.value)}
+                />
+                <Button
+                  type='submit'
+                  variant='contained'
+                  startIcon={<SaveIcon />}
+                >
+                  Save
+                </Button>
+              </form>
+            </EditUserProfile>
           </div>
         </div>
 

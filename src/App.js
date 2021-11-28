@@ -14,6 +14,7 @@ import Blog from './pages/blog/Blog'
 import Showmore from './pages/showmore/Showmore'
 import ScrollToTop from './Top'
 import UserProfile from './pages/userprofile/UserProfile'
+import EditUserProfile from './pages/edituserprofile/EditUserProfile'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/blog' component={Blog} exact />
           <Route path='/showmore/:cats' component={Showmore} exact />
           <Route path='/user-profile' component={UserProfile} exact />
+          <Route path='/edit' component={EditUserProfile} exact />
         </Switch>
       </Router>
       <ToastContainer />
