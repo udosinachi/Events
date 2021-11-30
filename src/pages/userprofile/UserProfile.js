@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './UserProfile.css'
 import Footer from '../../components/footer/Footer'
 import Navbar from '../../components/navbar/Navbar'
-import { Button, CircularProgress, TextField } from '@mui/material'
+import { Button, CircularProgress, Menu, TextField } from '@mui/material'
 
 import axios from 'axios'
 import Card from '@mui/material/Card'
@@ -39,6 +39,7 @@ const UserProfile = () => {
   const [category, setCategory] = useState(localStorage.getItem('category'))
   const [career, setCareer] = useState([])
   const [reload, setReload] = useState(true)
+  const [anchorEl, setAnchorEl] = useState(null)
 
   useEffect(() => {
     setLoader(true)
@@ -51,6 +52,9 @@ const UserProfile = () => {
       .then((res) => {
         setUserBlog(res.data.user)
         setLoader(false)
+      })
+      .catch((res) => {
+        toast.error('Unable to Display Posts')
       })
 
     axios
@@ -76,8 +80,6 @@ const UserProfile = () => {
       category,
       userText,
     }
-
-    console.log(data)
     axios
       .post('https://eventplanningweb.herokuapp.com/auth/users/edit', data, {
         headers: headers,
@@ -91,6 +93,7 @@ const UserProfile = () => {
           localStorage.setItem('phoneNumber', res.data.edit.phoneNumber)
           localStorage.setItem('category', res.data.edit.category)
           localStorage.setItem('image', res.data.edit.image)
+          localStorage.setItem('userText', res.data.edit.userText)
           setReload(!reload)
         } else {
           toast.error(res.data.message)
@@ -98,6 +101,44 @@ const UserProfile = () => {
       })
       .catch((res) => {
         toast.error('Unable to update')
+      })
+  }
+
+  const open = Boolean(anchorEl)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const load = () => {
+    axios
+      .get(
+        `https://eventplanningweb.herokuapp.com/blog/user/${localStorage.getItem(
+          'id'
+        )}`
+      )
+      .then((res) => {
+        setUserBlog(res.data.user)
+      })
+      .catch((res) => {
+        toast.error('Unable to Display Posts')
+      })
+  }
+
+  const deleteHandler = (id) => {
+    axios
+      .delete(`https://eventplanningweb.herokuapp.com/blog/delete/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        load()
+        setAnchorEl(null)
+        toast.success('Post Successfully deleted')
+      })
+      .catch((res) => {
+        toast.error('Unable to Delete Post')
       })
   }
 
@@ -198,11 +239,7 @@ const UserProfile = () => {
         </div>
 
         <div className='user-profile-text-div'>
-          <p>
-            aaaaaaaaaaaaaaa bbbbbbbbb ccccccccccc ddddddddddddd fffffffffffffff
-            ggggggggggggg ssssssssssss aaaaaaaaaaaa wwwwwwwwww xxxxxxxxxxxxxxx
-            cccccc vvvvvvf f fffffffffffffffff
-          </p>
+          <p>Description: {localStorage.getItem('userText')}</p>
         </div>
 
         <div>
@@ -230,7 +267,10 @@ const UserProfile = () => {
                             </Avatar>
                           }
                           action={
-                            <IconButton aria-label='settings'>
+                            <IconButton
+                              aria-label='settings'
+                              onClick={handleClick}
+                            >
                               <MoreVertIcon sx={{ color: red[50] }} />
                             </IconButton>
                           }
@@ -249,6 +289,19 @@ const UserProfile = () => {
                             </span>
                           }
                         />
+                        <Menu
+                          MenuListProps={{
+                            'aria-labelledby': 'long-button',
+                          }}
+                          anchorEl={anchorEl}
+                          open={open}
+                          onClose={handleClose}
+                        >
+                          <MenuItem onClick={handleClose}>Edit</MenuItem>
+                          <MenuItem onClick={() => deleteHandler(text._id)}>
+                            Delete
+                          </MenuItem>
+                        </Menu>
                         <CardContent>
                           <Typography variant='body2' color='white'>
                             {text.text}

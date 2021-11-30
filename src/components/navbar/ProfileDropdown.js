@@ -52,11 +52,9 @@ export default function ProfileDropdown(props) {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>
-          <Link to='/user-profile' className='link'>
-            Profile
-          </Link>
-        </MenuItem>
+        <Link to='/user-profile' className='link'>
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
