@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './UserProfile.css'
 import Footer from '../../components/footer/Footer'
 import Navbar from '../../components/navbar/Navbar'
-import { Button, CircularProgress, Menu, TextField } from '@mui/material'
+import { Button, CircularProgress, TextField } from '@mui/material'
 
 import axios from 'axios'
 import Card from '@mui/material/Card'
@@ -15,13 +15,13 @@ import Typography from '@mui/material/Typography'
 import { red } from '@mui/material/colors'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
 import Moment from 'react-moment'
 import EditUserProfile from '../edituserprofile/EditUserProfile'
 import SaveIcon from '@mui/icons-material/Save'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { toast } from 'react-toastify'
+import EditDropdown from '../../components/editdropdown/EditDropdown'
 
 const UserProfile = () => {
   const [heart, setHeart] = useState(true)
@@ -39,7 +39,6 @@ const UserProfile = () => {
   const [category, setCategory] = useState(localStorage.getItem('category'))
   const [career, setCareer] = useState([])
   const [reload, setReload] = useState(true)
-  const [anchorEl, setAnchorEl] = useState(null)
 
   useEffect(() => {
     setLoader(true)
@@ -104,15 +103,6 @@ const UserProfile = () => {
       })
   }
 
-  const open = Boolean(anchorEl)
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
   const load = () => {
     axios
       .get(
@@ -125,20 +115,6 @@ const UserProfile = () => {
       })
       .catch((res) => {
         toast.error('Unable to Display Posts')
-      })
-  }
-
-  const deleteHandler = (id) => {
-    axios
-      .delete(`https://eventplanningweb.herokuapp.com/blog/delete/${id}`)
-      .then((res) => {
-        console.log(res.data)
-        load()
-        setAnchorEl(null)
-        toast.success('Post Successfully deleted')
-      })
-      .catch((res) => {
-        toast.error('Unable to Delete Post')
       })
   }
 
@@ -266,14 +242,7 @@ const UserProfile = () => {
                               {text.name[0]}
                             </Avatar>
                           }
-                          action={
-                            <IconButton
-                              aria-label='settings'
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon sx={{ color: red[50] }} />
-                            </IconButton>
-                          }
+                          action={<EditDropdown id={text._id} refresh={load} />}
                           title={
                             <span style={{ color: 'white' }}>{text.name}</span>
                           }
@@ -289,19 +258,7 @@ const UserProfile = () => {
                             </span>
                           }
                         />
-                        <Menu
-                          MenuListProps={{
-                            'aria-labelledby': 'long-button',
-                          }}
-                          anchorEl={anchorEl}
-                          open={open}
-                          onClose={handleClose}
-                        >
-                          <MenuItem onClick={handleClose}>Edit</MenuItem>
-                          <MenuItem onClick={() => deleteHandler(text._id)}>
-                            Delete
-                          </MenuItem>
-                        </Menu>
+
                         <CardContent>
                           <Typography variant='body2' color='white'>
                             {text.text}
