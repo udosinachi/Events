@@ -212,9 +212,6 @@ const UserProfile = () => {
           <p>Email: {localStorage.getItem('email')}</p>
           <p>Phone Number: {localStorage.getItem('phoneNumber')}</p>
           <p>Category: {localStorage.getItem('category')}</p>
-        </div>
-
-        <div className='user-profile-text-div'>
           <p>Description: {localStorage.getItem('userText')}</p>
         </div>
 

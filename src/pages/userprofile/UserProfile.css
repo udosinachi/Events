@@ -13,6 +13,13 @@
   .user-profile-div {
     width: 97%;
   }
+  .user-personal-info {
+    width: 90%;
+    margin: auto;
+  }
+  .user-image-div {
+    width: 95%;
+  }
 }
 .user-div {
   /* border: 3px solid red; */
