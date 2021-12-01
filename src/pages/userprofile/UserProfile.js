@@ -86,13 +86,12 @@ const UserProfile = () => {
       .then((res) => {
         if (res.data.hasError === false) {
           toast.success('Successfully updated')
-          localStorage.setItem('fullName', res.data.edit.fullName)
-          localStorage.setItem('businessName', res.data.edit.businessName)
-          localStorage.setItem('email', res.data.edit.email)
-          localStorage.setItem('phoneNumber', res.data.edit.phoneNumber)
-          localStorage.setItem('category', res.data.edit.category)
-          localStorage.setItem('image', res.data.edit.image)
-          localStorage.setItem('userText', res.data.edit.userText)
+          localStorage.setItem('fullName', res.data.fullName)
+          localStorage.setItem('businessName', res.data.businessName)
+          localStorage.setItem('email', res.data.email)
+          localStorage.setItem('phoneNumber', res.data.phoneNumber)
+          localStorage.setItem('category', res.data.category)
+          localStorage.setItem('userText', res.data.userText)
           setReload(!reload)
         } else {
           toast.error(res.data.message)
@@ -196,6 +195,7 @@ const UserProfile = () => {
                   value={userText}
                   onChange={(e) => setUserText(e.target.value)}
                 />
+
                 <Button
                   type='submit'
                   variant='contained'

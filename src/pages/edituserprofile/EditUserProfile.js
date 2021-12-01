@@ -34,6 +34,11 @@ export default function EditUserProfile(props) {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
+          <div className='bottom-btns'>
+            <Button variant='contained' color='error' onClick={handleClose}>
+              Cancel
+            </Button>
+          </div>
           <Typography variant='h6' component='h2' sx={{ textAlign: 'center' }}>
             {props.header}
           </Typography>
