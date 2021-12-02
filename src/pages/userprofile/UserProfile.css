@@ -78,3 +78,8 @@
   display: flex;
   justify-content: flex-end;
 }
+.profile-h2 {
+  color: white;
+  text-align: center;
+  font-size: xx-large;
+}

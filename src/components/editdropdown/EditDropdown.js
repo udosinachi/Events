@@ -42,8 +42,13 @@ export default function EditDropdown({ id, refresh }) {
   }
 
   const deleteHandler = () => {
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
     axios
-      .delete(`https://eventplanningweb.herokuapp.com/blog/delete/${id}`)
+      .delete(`https://eventplanningweb.herokuapp.com/blog/delete/${id}`, {
+        headers: headers,
+      })
       .then((res) => {
         console.log(res.data)
         refresh()
@@ -60,8 +65,13 @@ export default function EditDropdown({ id, refresh }) {
     const data = {
       text: editText,
     }
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
     axios
-      .post(`https://eventplanningweb.herokuapp.com/blog/edit/${id}`, data)
+      .post(`https://eventplanningweb.herokuapp.com/blog/edit/${id}`, data, {
+        headers: headers,
+      })
       .then((res) => {
         console.log(res.data)
         refresh()

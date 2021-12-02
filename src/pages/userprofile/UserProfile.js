@@ -49,7 +49,7 @@ const UserProfile = () => {
         )}`
       )
       .then((res) => {
-        setUserBlog(res.data.user)
+        setUserBlog(res.data.latestuserpost)
         setLoader(false)
       })
       .catch((res) => {
@@ -216,7 +216,7 @@ const UserProfile = () => {
         </div>
 
         <div>
-          <h2>My Posts</h2>
+          <h2 className='profile-h2'>My Posts</h2>
           {loader === true ? (
             <div className='loader'>
               <CircularProgress className='main-loader' />

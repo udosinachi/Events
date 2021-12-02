@@ -37,8 +37,8 @@ const BlogPost = () => {
     axios
       .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
       .then((res) => {
-        const rev = res.data.blogposts.reverse()
-        setBlog(rev)
+        // const rev = res.data.blogposts.reverse()
+        setBlog(res.data.latestposts)
         setLoader(false)
       })
       .catch((err) => {
@@ -134,8 +134,8 @@ const BlogPost = () => {
     axios
       .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
       .then((res) => {
-        const rev = res.data.blogposts.reverse()
-        setBlog(rev)
+        // const rev = res.data.latestposts.reverse()
+        setBlog(res.data.latestposts)
         setLoader(false)
       })
       .catch((err) => {
