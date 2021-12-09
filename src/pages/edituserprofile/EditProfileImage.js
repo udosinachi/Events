@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-// import AddAPhoto from '@mui/icons-material/AddAPhoto'
-// import { IconButton } from '@mui/material'
+import AddAPhoto from '@mui/icons-material/AddAPhoto'
 import { toast } from 'react-toastify'
 
 const EditProfileImage = (props) => {
@@ -82,13 +81,11 @@ const EditProfileImage = (props) => {
   }
 
   return (
-    <div>
-      {/* <IconButton aria-label='delete'>
-        <AddAPhoto />
-      </IconButton> */}
+    <div className='merge'>
+      <AddAPhoto className='the-icon' />
       <form onSubmit={handleSubmit}>
-        <label className='input-file'>
-          Select an image...
+        <label className='add-profile-image'>
+          c
           <input type='file' onChange={(e) => addPic(e.target.files[0])} />
         </label>
       </form>

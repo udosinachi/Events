@@ -129,7 +129,7 @@ const UserProfile = () => {
               alt='profile'
               className='user-profile-image'
             />
-            <EditProfileImage />
+            <EditProfileImage className='change-img' />
           </div>
           <div className='user-names'>
             <span className='bn'>{localStorage.getItem('businessName')}</span>

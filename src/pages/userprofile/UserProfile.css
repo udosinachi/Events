@@ -33,9 +33,9 @@
   position: relative;
 }
 .user-image-div {
-  border: 3px solid green;
-  width: 180px;
-  height: 180px;
+  /* border: 3px solid green; */
+  width: 150px;
+  height: 150px;
   position: relative;
 }
 .user-profile-image {
@@ -83,4 +83,31 @@
   color: white;
   text-align: center;
   font-size: xx-large;
+}
+.add-profile-image {
+  font-family: calibri;
+  width: 22px;
+  border-radius: 5px;
+  border: 1px dashed #bbb;
+  text-align: center;
+  background-color: #ddd;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+.merge {
+  position: absolute;
+  /* border: 3px solid red; */
+  bottom: 0;
+  left: 80%;
+}
+.the-icon {
+  color: whitesmoke;
+}
+.change-img {
+  position: absolute;
+  top: 0;
+  border: 3px solid purple !important;
 }
