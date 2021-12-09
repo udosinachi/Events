@@ -22,6 +22,7 @@ import SaveIcon from '@mui/icons-material/Save'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { toast } from 'react-toastify'
 import EditDropdown from '../../components/editdropdown/EditDropdown'
+import EditProfileImage from '../edituserprofile/EditProfileImage'
 
 const UserProfile = () => {
   const [heart, setHeart] = useState(true)
@@ -128,6 +129,7 @@ const UserProfile = () => {
               alt='profile'
               className='user-profile-image'
             />
+            <EditProfileImage />
           </div>
           <div className='user-names'>
             <span className='bn'>{localStorage.getItem('businessName')}</span>
