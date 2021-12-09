@@ -27,7 +27,8 @@ const ProfileCard = () => {
     axios
       .get(`https://eventplanningweb.herokuapp.com/blog/user/${id}`)
       .then((res) => {
-        setUserBlog(res.data.user)
+        console.log(res.data.latestuserpost)
+        setUserBlog(res.data.latestuserpost)
       })
   }, [id])
 
