@@ -27,10 +27,10 @@
 @media (max-width: 770px) {
   .main-cards {
     width: 250px;
-    /* filter: none !important; */
   }
   .img {
     width: 250px !important;
+    filter: none !important;
   }
 }
 .a {
