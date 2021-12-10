@@ -21,8 +21,6 @@
   text-align: left;
   cursor: pointer;
   display: inline-block;
-  height: 100%;
-  width: 23%;
   padding-left: 5px;
   padding-right: 5px;
   border: none;
@@ -39,18 +37,22 @@
   .main-showmore {
     width: 45%;
   }
-  /* .img {
-    width: 250px !important;
-  } */
 }
 .a {
   color: #25bcbc;
   text-decoration: none;
   background-color: transparent;
+  outline: none;
+}
+.showmore-image-subdiv {
+  width: 250px;
+  height: 180px;
+  overflow: hidden;
 }
 .img {
   max-width: 100%;
   height: auto;
+  width: auto;
   margin-top: -9px;
   margin-bottom: 26px;
   -webkit-clip-path: polygon(0 0, 100% 6%, 100% 94%, 0 100%);
@@ -142,4 +144,5 @@
   color: white;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  width: 250px;
 }

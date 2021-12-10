@@ -15,7 +15,7 @@ const Cards = ({ headText }) => {
       )
       .then((res) => {
         const reverse = res.data.classify.reverse()
-        let slice = reverse.slice(0, 4)
+        let slice = reverse.slice(0, 5)
         setCardName(slice)
       })
   }, [headText])
@@ -29,7 +29,9 @@ const Cards = ({ headText }) => {
             <div className='main-cards' key={list._id}>
               <Link to={`/profile/${list._id}`} className='a'>
                 <div className='cards-image'>
-                  <img src={list.image} alt='events' className='img' />
+                  <div className='cards-image-subdiv'>
+                    <img src={list.image} alt='events' className='img' />
+                  </div>
                 </div>
                 <div className='card-content'>
                   <p className='card-p'>{list.businessName}</p>

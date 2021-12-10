@@ -39,7 +39,9 @@ const Showmore = () => {
                 <div className='main-showmore' key={list._id}>
                   <Link to={`/profile/${list._id}`} className='a'>
                     <div className='showmore-image'>
-                      <img src={list.image} alt='events' className='img' />
+                      <div className='showmore-image-subdiv'>
+                        <img src={list.image} alt='events' className='img' />
+                      </div>
                     </div>
                     <div className='showmore-content'>
                       <p className='showmore-p'>{list.businessName}</p>
