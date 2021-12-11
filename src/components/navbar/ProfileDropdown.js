@@ -55,7 +55,9 @@ export default function ProfileDropdown(props) {
         <Link to='/user-profile' className='link'>
           <MenuItem onClick={handleClose}>Profile</MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <Link to='/change-password' className='link'>
+          <MenuItem onClick={handleClose}>Change Password</MenuItem>
+        </Link>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

@@ -15,6 +15,7 @@ import Showmore from './pages/showmore/Showmore'
 import ScrollToTop from './Top'
 import UserProfile from './pages/userprofile/UserProfile'
 import EditUserProfile from './pages/edituserprofile/EditUserProfile'
+import ChangePassword from './pages/changepassword/ChangePassword'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/showmore/:cats' component={Showmore} exact />
           <Route path='/user-profile' component={UserProfile} exact />
           <Route path='/edit' component={EditUserProfile} exact />
+          <Route path='/change-password' component={ChangePassword} exact />
         </Switch>
       </Router>
       <ToastContainer />
