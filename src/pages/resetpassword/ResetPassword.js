@@ -14,28 +14,42 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useParams, useHistory } from 'react-router-dom'
 
 const theme = createTheme()
 
-export default function ForgotPassword() {
-  const [email, setEmail] = useState('')
+export default function ChangePassword() {
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const History = useHistory()
+
+  let { token } = useParams()
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
     const data = {
-      email: email,
+      token: token,
+      password: newPassword,
     }
+    console.log(data)
 
     axios
       .post(
-        'https://eventplanningweb.herokuapp.com/auth/users/forgotpassword',
+        'https://eventplanningweb.herokuapp.com/auth/users/resetpassword',
         data
       )
       .then((res) => {
-        console.log(res.data)
-        toast.success(res.data.message)
-        setEmail('')
+        if (res.data.hasError === false) {
+          console.log(res.data)
+          toast.success(res.data.message)
+          setNewPassword('')
+          setConfirmPassword('')
+          History.push('/login')
+        } else {
+          toast.error(res.data.message)
+        }
       })
   }
 
@@ -73,7 +87,7 @@ export default function ForgotPassword() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
-              Forgot Password
+              Create New Password
             </Typography>
             <Box
               component='form'
@@ -85,15 +99,24 @@ export default function ForgotPassword() {
                 margin='normal'
                 required
                 fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
-                autoFocus
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name='New Password'
+                label='New Password'
+                type='password'
+                autoComplete='new-password'
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
               />
-
+              <TextField
+                margin='normal'
+                required
+                fullWidth
+                name='Confirm Password'
+                label='Confirm Password'
+                type='password'
+                autoComplete='confirm-password'
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
               <Button
                 type='submit'
                 fullWidth

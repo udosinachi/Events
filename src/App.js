@@ -16,6 +16,8 @@ import ScrollToTop from './Top'
 import UserProfile from './pages/userprofile/UserProfile'
 import EditUserProfile from './pages/edituserprofile/EditUserProfile'
 import ChangePassword from './pages/changepassword/ChangePassword'
+import ForgotPassword from './pages/forgotpassword/ForgotPassword'
+import ResetPassword from './pages/resetpassword/ResetPassword'
 
 function App() {
   return (
@@ -35,6 +37,12 @@ function App() {
           <Route path='/user-profile' component={UserProfile} exact />
           <Route path='/edit' component={EditUserProfile} exact />
           <Route path='/change-password' component={ChangePassword} exact />
+          <Route path='/forgot-password' component={ForgotPassword} exact />
+          <Route
+            path='/reset-password/:token'
+            component={ResetPassword}
+            exact
+          />
         </Switch>
       </Router>
       <ToastContainer />
