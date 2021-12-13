@@ -224,15 +224,27 @@ const BlogPost = () => {
                   />
                 </label>
               </div>
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                onClick={handleSubmit}
-                sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-              >
-                Post
-              </Button>
+              {loader === false ? (
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  onClick={handleSubmit}
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  Post
+                </Button>
+              ) : (
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  onClick={handleSubmit}
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  <CircularProgress />
+                </Button>
+              )}
               <p className='post-text'>{postText}</p>
               <div className='main-posting-div'>
                 {!it || it.length === 0 ? (

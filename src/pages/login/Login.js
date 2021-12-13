@@ -17,10 +17,12 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const theme = createTheme()
 
 export default function Login() {
+  const [loader, setLoader] = useState(false)
   const history = useHistory()
 
   const [email, setEmail] = useState('')
@@ -32,6 +34,7 @@ export default function Login() {
       email,
       password,
     }
+    setLoader(true)
     axios
       .post('https://eventplanningweb.herokuapp.com/auth/users/login', data)
       .then((res) => {
@@ -39,6 +42,7 @@ export default function Login() {
           toast.success(res.data.message)
           setEmail('')
           setPassword('')
+          setLoader(false)
           window.setTimeout(() => {
             history.push('/')
           }, 1000)
@@ -54,6 +58,7 @@ export default function Login() {
           localStorage.setItem('image', res.data.image)
         } else {
           toast.error(res.data.message)
+          setLoader(false)
         }
       })
   }
@@ -128,23 +133,35 @@ export default function Login() {
                 control={<Checkbox value='remember' color='primary' />}
                 label='Remember me'
               />
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-              >
-                LogIn
-              </Button>
+              {loader === false ? (
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  LogIn
+                </Button>
+              ) : (
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  <CircularProgress />
+                </Button>
+              )}
+
               <Grid container>
                 <Grid item xs>
-                  <Link to='/forgot-password' variant='body2'>
+                  <Link to='/forgot-password' variant='body2' className='link'>
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link to='/signup' variant='body2'>
-                    {"Don't have an account? Sign Up"}
+                  <Link to='/signup' variant='body2' className='link'>
+                    {'No account? Sign Up'}
                   </Link>
                 </Grid>
               </Grid>

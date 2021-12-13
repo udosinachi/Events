@@ -18,10 +18,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const theme = createTheme()
 
 export default function Signup() {
+  const [loader, setLoader] = useState(false)
   const history = useHistory()
 
   const [fullName, setFullName] = useState('')
@@ -53,7 +55,7 @@ export default function Signup() {
       password,
       category,
     }
-
+    setLoader(true)
     axios
       .post('https://eventplanningweb.herokuapp.com/auth/users/register', data)
       .then((res) => {
@@ -74,11 +76,13 @@ export default function Signup() {
           localStorage.setItem('password', res.data.user.password)
           localStorage.setItem('category', res.data.user.category)
           localStorage.setItem('image', res.data.user.image)
+          setLoader(false)
           window.setTimeout(() => {
             history.push('/')
           }, 1000)
         } else {
           toast.error(res.data.message)
+          setLoader(false)
         }
       })
   }
@@ -219,18 +223,30 @@ export default function Signup() {
                   />
                 </Grid>
               </Grid>
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-              >
-                Sign Up
-              </Button>
+              {loader === false ? (
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  Sign Up
+                </Button>
+              ) : (
+                <Button
+                  type='submit'
+                  fullWidth
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  <CircularProgress />
+                </Button>
+              )}
+
               <Grid container justifyContent='flex-end'>
                 <Grid item>
-                  <Link to='login' variant='body2'>
-                    Already have an account? Sign in
+                  <Link to='login' variant='body2' className='link'>
+                    Already have an account? Sign In
                   </Link>
                 </Grid>
               </Grid>
