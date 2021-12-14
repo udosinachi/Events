@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+// import { useState } from 'react'
 import './Navbar.css'
 import Drawer from './Drawer'
 
@@ -12,8 +12,6 @@ import Button from '@mui/material/Button'
 import ProfileDropdown from './ProfileDropdown'
 
 export default function Navbar() {
-  const [name] = useState(localStorage.getItem('businessName').split(' ')[0])
-
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
       <AppBar position='fixed' className='nav'>
@@ -44,7 +42,7 @@ export default function Navbar() {
               Contact us
             </Link>
           </Button>
-          {!name ? (
+          {!localStorage.getItem('businessName') ? (
             <>
               <Button color='inherit' className='link2'>
                 <Link to='/login' className='link'>
@@ -60,7 +58,7 @@ export default function Navbar() {
           ) : (
             <div color='inherit' className='link2'>
               <ProfileDropdown
-                name={name}
+                name={localStorage.getItem('businessName').split(' ')[0]}
                 image={localStorage.getItem('image')}
               />
             </div>
