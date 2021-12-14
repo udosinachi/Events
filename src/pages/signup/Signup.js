@@ -19,6 +19,8 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 const theme = createTheme()
 
@@ -33,6 +35,7 @@ export default function Signup() {
   const [password, setPassword] = useState('')
   const [category, setCategory] = useState('')
   const [career, setCareer] = useState([])
+  const [eye, setEye] = useState(true)
 
   useEffect(() => {
     axios
@@ -179,18 +182,29 @@ export default function Signup() {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className='password-grid'>
                   <TextField
                     required
                     fullWidth
                     name='password'
                     label='Password'
-                    type='password'
+                    type={eye ? 'password' : 'text'}
                     id='password'
                     autoComplete='new-password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  {eye ? (
+                    <Visibility
+                      className='password-icon'
+                      onClick={() => setEye(false)}
+                    />
+                  ) : (
+                    <VisibilityOff
+                      className='password-icon'
+                      onClick={() => setEye(true)}
+                    />
+                  )}
                 </Grid>
 
                 <Grid item xs={12}>

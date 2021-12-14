@@ -18,6 +18,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import CircularProgress from '@mui/material/CircularProgress'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 const theme = createTheme()
 
@@ -27,6 +29,7 @@ export default function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [eye, setEye] = useState(true)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -105,34 +108,53 @@ export default function Login() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              <TextField
-                margin='normal'
-                required
-                fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
-                autoFocus
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <TextField
-                margin='normal'
-                required
-                fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                autoComplete='current-password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <FormControlLabel
-                control={<Checkbox value='remember' color='primary' />}
-                label='Remember me'
-              />
+              <Grid container spacing={2}>
+                <Grid item xs={12} className='password-grid'>
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
+                    id='email'
+                    label='Email Address'
+                    name='email'
+                    autoComplete='email'
+                    autoFocus
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} className='password-grid'>
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
+                    name='password'
+                    label='Password'
+                    type={eye ? 'password' : 'text'}
+                    id='password'
+                    autoComplete='current-password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  {eye ? (
+                    <Visibility
+                      className='password-icon'
+                      onClick={() => setEye(false)}
+                    />
+                  ) : (
+                    <VisibilityOff
+                      className='password-icon'
+                      onClick={() => setEye(true)}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value='remember' color='primary' />}
+                    label='Remember me'
+                  />
+                </Grid>
+              </Grid>
               {loader === false ? (
                 <Button
                   type='submit'

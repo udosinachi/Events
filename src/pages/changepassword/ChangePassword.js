@@ -14,6 +14,8 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 const theme = createTheme()
 
@@ -21,6 +23,7 @@ export default function ChangePassword() {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [eye, setEye] = useState(true)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -95,40 +98,81 @@ export default function ChangePassword() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              <TextField
-                margin='normal'
-                required
-                fullWidth
-                label='Old Password'
-                name='Old Password'
-                autoComplete='old-password'
-                type='password'
-                autoFocus
-                value={oldPassword}
-                onChange={(e) => setOldPassword(e.target.value)}
-              />
-              <TextField
-                margin='normal'
-                required
-                fullWidth
-                name='New Password'
-                label='New Password'
-                type='password'
-                autoComplete='new-password'
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-              <TextField
-                margin='normal'
-                required
-                fullWidth
-                name='Confirm Password'
-                label='Confirm Password'
-                type='password'
-                autoComplete='confirm-password'
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <Grid container spacing={2}>
+                <Grid item xs={12} className='password-grid'>
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
+                    label='Old Password'
+                    name='Old Password'
+                    autoComplete='old-password'
+                    type={eye ? 'password' : 'text'}
+                    autoFocus
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                  />
+                  {eye ? (
+                    <Visibility
+                      className='password-icon'
+                      onClick={() => setEye(false)}
+                    />
+                  ) : (
+                    <VisibilityOff
+                      className='password-icon'
+                      onClick={() => setEye(true)}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={12} className='password-grid'>
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
+                    name='New Password'
+                    label='New Password'
+                    type={eye ? 'password' : 'text'}
+                    autoComplete='new-password'
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  {eye ? (
+                    <Visibility
+                      className='password-icon'
+                      onClick={() => setEye(false)}
+                    />
+                  ) : (
+                    <VisibilityOff
+                      className='password-icon'
+                      onClick={() => setEye(true)}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={12} className='password-grid'>
+                  <TextField
+                    margin='normal'
+                    required
+                    fullWidth
+                    name='Confirm Password'
+                    label='Confirm Password'
+                    type={eye ? 'password' : 'text'}
+                    autoComplete='confirm-password'
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  {eye ? (
+                    <Visibility
+                      className='password-icon'
+                      onClick={() => setEye(false)}
+                    />
+                  ) : (
+                    <VisibilityOff
+                      className='password-icon'
+                      onClick={() => setEye(true)}
+                    />
+                  )}
+                </Grid>
+              </Grid>
               <Button
                 type='submit'
                 fullWidth
