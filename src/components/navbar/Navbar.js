@@ -12,8 +12,7 @@ import Button from '@mui/material/Button'
 import ProfileDropdown from './ProfileDropdown'
 
 export default function Navbar() {
-  let slice = localStorage.getItem('businessName').split(' ')[0]
-  const [name] = useState(slice)
+  const [name] = useState(localStorage.getItem('businessName').split(' ')[0])
 
   return (
     <Box sx={{ flexGrow: 1 }} className='skewing'>
