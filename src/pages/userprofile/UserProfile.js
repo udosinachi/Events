@@ -214,7 +214,7 @@ const UserProfile = () => {
           <p>Email: {localStorage.getItem('email')}</p>
           <p>Phone Number: {localStorage.getItem('phoneNumber')}</p>
           <p>Category: {localStorage.getItem('category')}</p>
-          <p>Description: {localStorage.getItem('userText')}</p>
+          <p>Descriptions: {localStorage.getItem('userText')}</p>
         </div>
 
         <div>
