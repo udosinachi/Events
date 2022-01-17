@@ -55,3 +55,16 @@
   font-size: 63px;
   color: #1b2a3f;
 }
+
+.sponsors-img-div {
+  /* border: 3px solid red; */
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sponsors-img {
+  width: 250px;
+  margin: 10px;
+}

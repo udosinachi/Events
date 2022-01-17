@@ -10,10 +10,14 @@ const Sponsors = () => {
           <strong>Sponsors</strong>
         </div>
 
-        <img
-          src='https://branchoutsf.com/img/sponsors/mparticle.svg'
-          alt='brand'
-        />
+        <div className='sponsors-img-div'>
+          <img
+            src='/assets/joyride.png'
+            alt='joyride'
+            className='sponsors-img'
+          />
+          <img src='/assets/mcbee.png' alt='mcbee' className='sponsors-img' />
+        </div>
       </div>
     </div>
   )
