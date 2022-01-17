@@ -23,7 +23,15 @@
   .user-div {
     width: 90%;
     margin: auto;
-    justify-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .user-image-div {
+    margin: auto;
+  }
+  .user-names {
+    margin: auto !important;
   }
 }
 .user-div {
@@ -49,13 +57,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30px;
+  margin-left: 5px;
 }
 .user-names span {
   padding: 5px 0;
 }
 .bn {
-  font-size: 25px;
+  font-size: 27px;
   font-weight: 700;
   color: white;
 }
@@ -65,6 +73,7 @@
 .edit-btn {
   position: absolute;
   right: 0;
+  top: -50px;
 }
 .user-profile-text-div {
   color: white;
