@@ -10,7 +10,7 @@ const Updates = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    toast.success('Opted for Updates')
+    toast.success('Subscribed for Updates')
     setLastName('')
     setFirstName('')
     setEmail('')

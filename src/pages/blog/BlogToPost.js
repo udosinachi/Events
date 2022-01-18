@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
+import Icon from '@mui/material/Icon'
+import { green } from '@mui/material/colors'
 
 const style = {
   position: 'absolute',
@@ -25,8 +27,10 @@ export default function BlogToPost(props) {
   const handleClose = () => setOpen(false)
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <div className='blogtopost-div'>
+      <Button onClick={handleOpen} className='blogtopost-button'>
+        Post <Icon sx={{ color: green[500] }}>add_circle</Icon>
+      </Button>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'

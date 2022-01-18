@@ -134,3 +134,11 @@ input[type='file'] {
   background-color: #ddd;
   cursor: pointer;
 }
+.blogtopost-div {
+  /* border: 3px solid red; */
+  display: flex;
+  justify-content: flex-end;
+}
+.blogtopost-button {
+  color: white !important;
+}
