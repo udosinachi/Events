@@ -21,7 +21,6 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-// import TextareaAutosize from '@mui/material/TextareaAutosize'
 
 const theme = createTheme()
 
@@ -99,20 +98,18 @@ export default function Signup() {
   const nextClick = (e) => {
     e.preventDefault()
 
-    // if (
-    //   !fullName ||
-    //   !businessName ||
-    //   !email ||
-    //   !phoneNumber ||
-    //   !password ||
-    //   !category
-    // ) {
-    //   toast.error('all fields must be entered')
-    // } else {
-    //   setDescription(false)
-    // }
-
-    setDescription(false)
+    if (
+      !fullName ||
+      !businessName ||
+      !email ||
+      !phoneNumber ||
+      !password ||
+      !category
+    ) {
+      toast.error('all fields must be entered')
+    } else {
+      setDescription(false)
+    }
   }
 
   return (
@@ -161,12 +158,7 @@ export default function Signup() {
                 <Typography component='h1' variant='h5'>
                   Sign Up
                 </Typography>
-                <Box
-                  component='form'
-                  noValidate
-                  // onSubmit={handleSubmit}
-                  sx={{ mt: 1 }}
-                >
+                <Box component='form' noValidate sx={{ mt: 1 }}>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -273,7 +265,7 @@ export default function Signup() {
                     </Grid>
                   </Grid>
                   <Button
-                    type='submit'
+                    type='button'
                     fullWidth
                     variant='contained'
                     sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
@@ -329,17 +321,22 @@ export default function Signup() {
                 sx={{
                   my: 8,
                   mx: 4,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: '#20364b' }}>
-                  <LockOutlinedIcon />
-                </Avatar>
-                <Typography component='h1' variant='h5'>
-                  Company's Description
-                </Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Avatar sx={{ mt: 1, bgcolor: '#20364b' }}>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component='h1' variant='h5'>
+                    Company's Description
+                  </Typography>
+                </Box>
                 <Box
                   component='form'
                   noValidate
@@ -362,15 +359,7 @@ export default function Signup() {
                     </Grid>
                   </Grid>
 
-                  <Button
-                    type='submit'
-                    fullWidth
-                    variant='contained'
-                    sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-                  >
-                    Sign Up
-                  </Button>
-                  {/* {loader === true ? (
+                  {loader === false ? (
                     <Button
                       type='submit'
                       fullWidth
@@ -388,7 +377,7 @@ export default function Signup() {
                     >
                       <CircularProgress />
                     </Button>
-                  )} */}
+                  )}
                   <div sx={{ mt: 5 }} />
                 </Box>
               </Box>
