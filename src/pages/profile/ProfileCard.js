@@ -16,6 +16,8 @@ import ShareIcon from '@mui/icons-material/Share'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
 import Moment from 'react-moment'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 
 const ProfileCard = () => {
   const [heart, setHeart] = useState(true)
@@ -35,7 +37,10 @@ const ProfileCard = () => {
   return (
     <>
       {!userBlog || userBlog.length === 0 ? (
-        <h3>No Post</h3>
+        <Alert severity='info'>
+          <AlertTitle>Info</AlertTitle>
+          <strong>No Post!</strong>
+        </Alert>
       ) : (
         <div>
           {userBlog.map((text) => (

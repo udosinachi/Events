@@ -23,6 +23,8 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { toast } from 'react-toastify'
 import EditDropdown from '../../components/editdropdown/EditDropdown'
 import EditProfileImage from '../edituserprofile/EditProfileImage'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 
 const UserProfile = () => {
   const [heart, setHeart] = useState(true)
@@ -226,7 +228,10 @@ const UserProfile = () => {
           ) : (
             <>
               {!userBlog || userBlog.length === 0 ? (
-                <h3>No Post</h3>
+                <Alert severity='info'>
+                  <AlertTitle>Info</AlertTitle>
+                  <strong>No Post!</strong>
+                </Alert>
               ) : (
                 <div>
                   {userBlog.map((text) => (
