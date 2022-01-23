@@ -38,6 +38,7 @@ export default function Signup() {
   const [career, setCareer] = useState([])
   const [eye, setEye] = useState(true)
   const [description, setDescription] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     axios
@@ -60,6 +61,7 @@ export default function Signup() {
       password,
       category,
       userText,
+      isAdmin,
     }
     setLoader(true)
     axios
@@ -74,6 +76,7 @@ export default function Signup() {
           setPassword('')
           setCategory('')
           setUserText('')
+          setIsAdmin(res.data.user.isAdmin)
           localStorage.setItem('token', res.data.user.token)
           localStorage.setItem('id', res.data.user._id)
           localStorage.setItem('fullName', res.data.user.fullName)
@@ -84,6 +87,7 @@ export default function Signup() {
           localStorage.setItem('category', res.data.user.category)
           localStorage.setItem('image', res.data.user.image)
           localStorage.setItem('userText', res.data.user.userText)
+          localStorage.setItem('isAdmin', res.data.user.isAdmin)
           setLoader(false)
           window.setTimeout(() => {
             history.push('/')

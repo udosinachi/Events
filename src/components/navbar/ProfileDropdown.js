@@ -26,6 +26,7 @@ export default function ProfileDropdown(props) {
     localStorage.setItem('category', '')
     localStorage.setItem('image', '')
     localStorage.setItem('post', '')
+    localStorage.setItem('isAdmin', '')
     history.push('/')
     window.location.reload()
   }
@@ -52,6 +53,12 @@ export default function ProfileDropdown(props) {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
+        {localStorage.getItem('isAdmin') === 'true' ? (
+          <Link to='/admin' className='link'>
+            <MenuItem onClick={handleClose}>Admin</MenuItem>
+          </Link>
+        ) : null}
+
         <Link to='/user-profile' className='link'>
           <MenuItem onClick={handleClose}>Profile</MenuItem>
         </Link>

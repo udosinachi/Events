@@ -59,6 +59,7 @@ export default function Login() {
           localStorage.setItem('password', res.data.password)
           localStorage.setItem('category', res.data.category)
           localStorage.setItem('image', res.data.image)
+          localStorage.setItem('isAdmin', res.data.isAdmin)
         } else {
           toast.error(res.data.message)
           setLoader(false)
