@@ -13,8 +13,8 @@ import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import Icon from '@mui/material/Icon'
 import { Button } from '@mui/material'
+import AdminOptions from './AdminOptions'
 
 const columns = [
   { id: '1', label: 'Full Name', minWidth: 100 },
@@ -45,7 +45,7 @@ const columns = [
   },
   {
     id: '7',
-    label: 'option',
+    label: 'Option',
     minWidth: 100,
     align: 'left',
   },
@@ -125,13 +125,11 @@ export default function StickyHeadTable() {
                             {row.isAdmin === true ? <p>true</p> : <p>false</p>}
                           </TableCell>
                           <TableCell>
-                            <Button>
-                              <Icon
-                                baseClassName='fas'
-                                className='fas fa-ellipsis-h'
-                                color='primary'
-                              />
-                            </Button>
+                            {row._id && (
+                              <Button>
+                                <AdminOptions />
+                              </Button>
+                            )}
                           </TableCell>
                         </TableRow>
                       )
