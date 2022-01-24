@@ -13,8 +13,9 @@ import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { Button } from '@mui/material'
 import AdminOptions from './AdminOptions'
+import DoneIcon from '@mui/icons-material/Done'
+import CloseIcon from '@mui/icons-material/Close'
 
 const columns = [
   { id: '1', label: 'Full Name', minWidth: 100 },
@@ -39,8 +40,8 @@ const columns = [
   },
   {
     id: '6',
-    label: 'isAdmin',
-    minWidth: 100,
+    label: 'Admin',
+    minWidth: 50,
     align: 'left',
   },
   {
@@ -122,15 +123,13 @@ export default function StickyHeadTable() {
                           <TableCell>{row.phoneNumber}</TableCell>
                           <TableCell>{row.category}</TableCell>
                           <TableCell>
-                            {row.isAdmin === true ? <p>true</p> : <p>false</p>}
-                          </TableCell>
-                          <TableCell>
-                            {row._id && (
-                              <Button>
-                                <AdminOptions />
-                              </Button>
+                            {row.isAdmin === true ? (
+                              <DoneIcon style={{ color: 'green' }} />
+                            ) : (
+                              <CloseIcon style={{ color: 'red' }} />
                             )}
                           </TableCell>
+                          <TableCell>{row._id && <AdminOptions />}</TableCell>
                         </TableRow>
                       )
                     })}

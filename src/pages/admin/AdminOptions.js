@@ -2,6 +2,7 @@ import * as React from 'react'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Icon from '@mui/material/Icon'
+import { Button } from '@mui/material'
 
 export default function LongMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -15,12 +16,13 @@ export default function LongMenu() {
 
   return (
     <div>
-      <Icon
-        baseClassName='fas'
-        className='fas fa-ellipsis-h'
-        color='primary'
-        onClick={handleClick}
-      />
+      <Button onClick={handleClick}>
+        <Icon
+          baseClassName='fas'
+          className='fas fa-ellipsis-h'
+          color='primary'
+        />
+      </Button>
       <Menu
         id='long-menu'
         MenuListProps={{
