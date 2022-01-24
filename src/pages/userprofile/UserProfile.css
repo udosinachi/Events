@@ -120,3 +120,7 @@
   top: 0;
   border: 3px solid purple !important;
 }
+.user-no-post-alert {
+  width: 90%;
+  margin: auto;
+}

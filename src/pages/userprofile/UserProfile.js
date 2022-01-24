@@ -228,10 +228,12 @@ const UserProfile = () => {
           ) : (
             <>
               {!userBlog || userBlog.length === 0 ? (
-                <Alert severity='info'>
-                  <AlertTitle>Info</AlertTitle>
-                  <strong>No Post!</strong>
-                </Alert>
+                <div className='user-no-post-alert'>
+                  <Alert severity='info'>
+                    <AlertTitle>Info</AlertTitle>
+                    <strong>No Post!</strong>
+                  </Alert>
+                </div>
               ) : (
                 <div>
                   {userBlog.map((text) => (
