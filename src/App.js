@@ -19,6 +19,7 @@ import ChangePassword from './pages/changepassword/ChangePassword'
 import ForgotPassword from './pages/forgotpassword/ForgotPassword'
 import ResetPassword from './pages/resetpassword/ResetPassword'
 import Admin from './pages/admin/Admin'
+import AdminUsers from './pages/admin/AdminUsers'
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path='/change-password' component={ChangePassword} exact />
           <Route path='/forgot-password' component={ForgotPassword} exact />
           <Route path='/admin' component={Admin} exact />
+          <Route path='/admin-viewusers/:id' component={AdminUsers} exact />
           <Route
             path='/reset-password/:token'
             component={ResetPassword}

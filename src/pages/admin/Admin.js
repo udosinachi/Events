@@ -56,8 +56,13 @@ export default function StickyHeadTable() {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
     axios
-      .get('https://eventplanningweb.herokuapp.com/auth/users')
+      .get('https://eventplanningweb.herokuapp.com/auth/users', {
+        headers: headers,
+      })
       .then((res) => {
         setUsers(res.data.latestUsers)
         // console.log(res.data.latestUsers)

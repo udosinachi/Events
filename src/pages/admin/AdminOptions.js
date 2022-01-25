@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Icon from '@mui/material/Icon'
 import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 export default function LongMenu({ id, reload }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -51,7 +52,11 @@ export default function LongMenu({ id, reload }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>View User</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to={`/admin-viewusers/${id}`} className='link'>
+            View User
+          </Link>
+        </MenuItem>
         <MenuItem onClick={deleteHandler}>Delete User</MenuItem>
       </Menu>
     </div>
