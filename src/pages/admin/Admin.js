@@ -59,8 +59,8 @@ export default function StickyHeadTable() {
     axios
       .get('https://eventplanningweb.herokuapp.com/auth/users')
       .then((res) => {
-        setUsers(res.data.users)
-        // console.log(res.data.users)
+        setUsers(res.data.latestUsers)
+        // console.log(res.data.latestUsers)
       })
       .catch((err) => {
         toast.error('Unable to connect')
@@ -79,6 +79,18 @@ export default function StickyHeadTable() {
     setPage(0)
   }
 
+  const handleFilter = (id) => {
+    let user = []
+
+    for (let i = 0; i < users.length; i++) {
+      if (id !== users[i]._id) {
+        user.push(users[i])
+      }
+    }
+
+    setUsers(user)
+  }
+
   return (
     <div className='admin'>
       <Navbar />
@@ -91,7 +103,7 @@ export default function StickyHeadTable() {
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
-                      key={column.id}
+                      key={column.label}
                       align={column.align}
                       style={{
                         minWidth: column.minWidth,
@@ -115,7 +127,7 @@ export default function StickyHeadTable() {
                           hover
                           role='checkbox'
                           tabIndex={-1}
-                          key={row.code}
+                          key={row._id}
                         >
                           <TableCell>{row.fullName}</TableCell>
                           <TableCell>{row.businessName}</TableCell>
@@ -129,7 +141,14 @@ export default function StickyHeadTable() {
                               <CloseIcon style={{ color: 'red' }} />
                             )}
                           </TableCell>
-                          <TableCell>{row._id && <AdminOptions />}</TableCell>
+                          <TableCell>
+                            {
+                              <AdminOptions
+                                id={row._id}
+                                reload={() => handleFilter(row._id)}
+                              />
+                            }
+                          </TableCell>
                         </TableRow>
                       )
                     })}

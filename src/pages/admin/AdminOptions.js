@@ -1,16 +1,35 @@
 import * as React from 'react'
+import axios from 'axios'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Icon from '@mui/material/Icon'
 import { Button } from '@mui/material'
+import { toast } from 'react-toastify'
 
-export default function LongMenu() {
+export default function LongMenu({ id, reload }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const deleteHandler = () => {
+    axios
+      .delete(
+        `https://eventplanningweb.herokuapp.com/auth/users/deleteuser/${id}`
+      )
+      .then((res) => {
+        console.log(res.data)
+        setAnchorEl(null)
+        toast.success('Successfully deleted a User')
+      })
+      .catch((err) => {
+        toast.error('Unable to Delete User')
+      })
+    reload()
     setAnchorEl(null)
   }
 
@@ -33,7 +52,7 @@ export default function LongMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>View User</MenuItem>
-        <MenuItem onClick={handleClose}>Delete User</MenuItem>
+        <MenuItem onClick={deleteHandler}>Delete User</MenuItem>
       </Menu>
     </div>
   )
