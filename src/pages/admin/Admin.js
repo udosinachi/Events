@@ -151,6 +151,7 @@ export default function StickyHeadTable() {
                               <AdminOptions
                                 id={row._id}
                                 reload={() => handleFilter(row._id)}
+                                admin={row.isAdmin}
                               />
                             }
                           </TableCell>

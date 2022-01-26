@@ -7,7 +7,7 @@ import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 
-export default function LongMenu({ id, reload }) {
+export default function LongMenu({ id, reload, admin }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -18,12 +18,16 @@ export default function LongMenu({ id, reload }) {
   }
 
   const deleteHandler = () => {
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
     axios
       .delete(
-        `https://eventplanningweb.herokuapp.com/auth/users/deleteuser/${id}`
+        `https://eventplanningweb.herokuapp.com/auth/users/deleteuser/${id}`,
+        { headers: headers }
       )
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setAnchorEl(null)
         toast.success('Successfully deleted a User')
       })
@@ -32,6 +36,26 @@ export default function LongMenu({ id, reload }) {
       })
     reload()
     setAnchorEl(null)
+  }
+
+  const makeAdmin = () => {
+    const headers = { authorization: `Bearer ${localStorage.getItem('token')}` }
+    axios
+      .get(
+        `https://eventplanningweb.herokuapp.com/auth/users/makeadmin/${id}`,
+        { headers: headers }
+      )
+      .then((res) => {
+        if (res.data.hasError === false) {
+          reload()
+          setAnchorEl(null)
+          toast.success('User is now an Admin')
+        }
+      })
+      .catch((err) => {
+        toast.error('Unable to make Admin')
+        console.log(err)
+      })
   }
 
   return (
@@ -57,7 +81,20 @@ export default function LongMenu({ id, reload }) {
             View User
           </Link>
         </MenuItem>
-        <MenuItem onClick={deleteHandler}>Delete User</MenuItem>
+        {admin === false ? (
+          <MenuItem onClick={makeAdmin}>Make Admin</MenuItem>
+        ) : null}
+
+        <MenuItem
+          onClick={() => {
+            if (window.confirm('Are you sure you want to delete this user?')) {
+              deleteHandler()
+            }
+          }}
+          className='styles'
+        >
+          Delete User
+        </MenuItem>
       </Menu>
     </div>
   )
