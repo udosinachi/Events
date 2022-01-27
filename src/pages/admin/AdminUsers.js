@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
-import ProfileCard from '../profile/ProfileCard'
+import AdminDeleteUserPost from './AdminDeleteUserPost'
 import { useParams } from 'react-router'
 import CircularProgress from '@mui/material/CircularProgress'
 
@@ -55,7 +55,7 @@ const AdminUsers = () => {
 
           <div>
             <p className='profile-text-header'> POSTS</p>
-            <ProfileCard />
+            <AdminDeleteUserPost />
           </div>
         </div>
       </div>
