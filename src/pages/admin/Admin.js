@@ -72,6 +72,23 @@ export default function StickyHeadTable() {
       })
   }, [])
 
+  const update = () => {
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    }
+    axios
+      .get('https://eventplanningweb.herokuapp.com/auth/users', {
+        headers: headers,
+      })
+      .then((res) => {
+        setUsers(res.data.latestUsers)
+        // console.log(res.data.latestUsers)
+      })
+      .catch((err) => {
+        toast.error('Unable to connect')
+      })
+  }
+
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
@@ -152,6 +169,7 @@ export default function StickyHeadTable() {
                                 id={row._id}
                                 reload={() => handleFilter(row._id)}
                                 admin={row.isAdmin}
+                                update={() => update(row._id)}
                               />
                             }
                           </TableCell>

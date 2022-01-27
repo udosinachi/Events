@@ -7,7 +7,7 @@ import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 
-export default function LongMenu({ id, reload, admin }) {
+export default function LongMenu({ id, reload, admin, update }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -47,13 +47,33 @@ export default function LongMenu({ id, reload, admin }) {
       )
       .then((res) => {
         if (res.data.hasError === false) {
-          reload()
+          update()
           setAnchorEl(null)
           toast.success('User is now an Admin')
         }
       })
       .catch((err) => {
         toast.error('Unable to make Admin')
+        console.log(err)
+      })
+  }
+
+  const removeAdmin = () => {
+    const headers = { authorization: `Bearer ${localStorage.getItem('token')}` }
+    axios
+      .get(
+        `https://eventplanningweb.herokuapp.com/auth/users/removeadmin/${id}`,
+        { headers: headers }
+      )
+      .then((res) => {
+        if (res.data.hasError === false) {
+          update()
+          setAnchorEl(null)
+          toast.success('Admin Role has been Removed')
+        }
+      })
+      .catch((err) => {
+        toast.error('Unable to Remove Admin Role')
         console.log(err)
       })
   }
@@ -83,7 +103,9 @@ export default function LongMenu({ id, reload, admin }) {
         </MenuItem>
         {admin === false ? (
           <MenuItem onClick={makeAdmin}>Make Admin</MenuItem>
-        ) : null}
+        ) : (
+          <MenuItem onClick={removeAdmin}>Remove Admin</MenuItem>
+        )}
 
         <MenuItem
           onClick={() => {
