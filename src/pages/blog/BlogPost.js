@@ -20,6 +20,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ImageList, ImageListItem } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
+import Alert from '@mui/material/Alert'
 
 const BlogPost = () => {
   const [toggle, setToggle] = useState('All')
@@ -134,7 +135,7 @@ const BlogPost = () => {
     axios
       .get('https://eventplanningweb.herokuapp.com/blog/blogposts')
       .then((res) => {
-        // const rev = res.data.latestposts.reverse()
+        // console.log(res.data.latestposts)
         setBlog(res.data.latestposts)
         setLoader(false)
       })
@@ -167,8 +168,8 @@ const BlogPost = () => {
   return (
     <div>
       {loader === true ? (
-        <div className='loader'>
-          <CircularProgress className='main-loader' />
+        <div className="loader">
+          <CircularProgress className="main-loader" />
         </div>
       ) : (
         <>
@@ -198,206 +199,221 @@ const BlogPost = () => {
               )
             })}
           </div>
-
-          <div>
-            <BlogToPost head='Create a new post'>
-              <div className='ii'>
-                <TextField
-                  className='post-input'
-                  margin='normal'
-                  required
-                  fullWidth
-                  id='postText'
-                  label='Post Text'
-                  name='postText'
-                  autoComplete='postText'
-                  // autoFocus
-                  value={postText}
-                  onChange={(e) => setPostText(e.target.value)}
-                />
-                <label className='input-file'>
-                  Select an image...
-                  <input
-                    type='file'
-                    value={postImage}
-                    onChange={(e) => addPic(e.target.files[0])}
+          {localStorage.getItem('fullName') && (
+            <div>
+              <BlogToPost head="Create a new post">
+                <div className="ii">
+                  <TextField
+                    className="post-input"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="postText"
+                    label="Post Text"
+                    name="postText"
+                    autoComplete="postText"
+                    // autoFocus
+                    value={postText}
+                    onChange={(e) => setPostText(e.target.value)}
                   />
-                </label>
-              </div>
-              {loader === false ? (
-                <Button
-                  type='submit'
-                  fullWidth
-                  variant='contained'
-                  onClick={handleSubmit}
-                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-                >
-                  Post
-                </Button>
-              ) : (
-                <Button
-                  type='submit'
-                  fullWidth
-                  variant='contained'
-                  onClick={handleSubmit}
-                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-                >
-                  <CircularProgress />
-                </Button>
-              )}
-              <p className='post-text'>{postText}</p>
-              <div className='main-posting-div'>
-                {!it || it.length === 0 ? (
-                  <div>No Picture has been added</div>
+                  <label className="input-file">
+                    Select an image...
+                    <input
+                      type="file"
+                      value={postImage}
+                      onChange={(e) => addPic(e.target.files[0])}
+                    />
+                  </label>
+                </div>
+                {loader === false ? (
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    onClick={handleSubmit}
+                    sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                  >
+                    Post
+                  </Button>
                 ) : (
-                  <>
-                    {it.map((peg) => (
-                      <div key={peg} className='posting-imgdiv'>
-                        <img src={peg} alt='jh' className='posting-img' />
-                        <button onClick={() => cancelHandler(peg)}>X</button>
-                      </div>
-                    ))}{' '}
-                  </>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    onClick={handleSubmit}
+                    sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                  >
+                    <CircularProgress />
+                  </Button>
                 )}
-              </div>
-            </BlogToPost>
-          </div>
+                <p className="post-text">{postText}</p>
+                <div className="main-posting-div">
+                  {!it || it.length === 0 ? (
+                    <div>No Picture has been added</div>
+                  ) : (
+                    <>
+                      {it.map((peg) => (
+                        <div key={peg} className="posting-imgdiv">
+                          <img src={peg} alt="jh" className="posting-img" />
+                          <button onClick={() => cancelHandler(peg)}>X</button>
+                        </div>
+                      ))}{' '}
+                    </>
+                  )}
+                </div>
+              </BlogToPost>
+            </div>
+          )}
 
           {loader === true ? (
-            <div className='loader'>
-              <CircularProgress className='main-loader' />
+            <div className="loader">
+              <CircularProgress className="main-loader" />
             </div>
           ) : (
             <>
-              {blog.map((text) => (
-                <span key={text._id}>
-                  {toggle === 'All' ? (
-                    <Card className='blog-card'>
-                      <CardHeader
-                        avatar={
-                          <Avatar
-                            sx={{ bgcolor: red[500] }}
-                            aria-label='recipe'
-                          >
-                            {text.name[0]}
-                          </Avatar>
-                        }
-                        action={
-                          <IconButton aria-label='settings'>
-                            <MoreVertIcon sx={{ color: red[50] }} />
-                          </IconButton>
-                        }
-                        title={
-                          <span style={{ color: 'white' }}>{text.name}</span>
-                        }
-                        subheader={
-                          <Moment
-                            format='D MMM YYYY HH:mm'
-                            withTitle
-                            className='blog-date'
-                          >
-                            {text.createdAt}
-                          </Moment>
-                        }
-                      />
-                      <CardContent>
-                        <Typography variant='body2' color='white'>
-                          {text.text}
-                        </Typography>
-                      </CardContent>
-
-                      <ImageList cols={2} className='blog-imagelist'>
-                        {text.blogImage.map((item) => (
-                          <ImageListItem key={item} className='blog-images'>
-                            <img src={item} alt='blogpics' />
-                          </ImageListItem>
-                        ))}
-                      </ImageList>
-
-                      <CardActions disableSpacing>
-                        <IconButton
-                          aria-label='add to favorites'
-                          onClick={() => {
-                            setHeart(!heart)
-                          }}
-                        >
-                          <FavoriteIcon
-                            className={heart ? 'heart-white' : 'heart-red'}
+              {blog.length === 0 ? (
+                <Alert severity="info">
+                  <strong>No Post!</strong>
+                </Alert>
+              ) : (
+                <>
+                  {blog.map((text) => (
+                    <span key={text._id}>
+                      {toggle === 'All' ? (
+                        <Card className="blog-card">
+                          <CardHeader
+                            avatar={
+                              <Avatar
+                                sx={{ bgcolor: red[500] }}
+                                aria-label="recipe"
+                              >
+                                {text.name[0]}
+                              </Avatar>
+                            }
+                            action={
+                              <IconButton aria-label="settings">
+                                <MoreVertIcon sx={{ color: red[50] }} />
+                              </IconButton>
+                            }
+                            title={
+                              <span style={{ color: 'white' }}>
+                                {text.name}
+                              </span>
+                            }
+                            subheader={
+                              <Moment
+                                format="D MMM YYYY HH:mm"
+                                withTitle
+                                className="blog-date"
+                              >
+                                {text.createdAt}
+                              </Moment>
+                            }
                           />
-                        </IconButton>
-                        <IconButton aria-label='share'>
-                          <ShareIcon sx={{ color: red[50] }} />
-                        </IconButton>
-                      </CardActions>
-                    </Card>
-                  ) : (
-                    toggle === text.category && (
-                      <Card className='blog-card'>
-                        <CardHeader
-                          avatar={
-                            <Avatar
-                              sx={{ bgcolor: red[500] }}
-                              aria-label='recipe'
-                            >
-                              {text.name[0]}
-                            </Avatar>
-                          }
-                          action={
-                            <IconButton aria-label='settings'>
-                              <MoreVertIcon sx={{ color: red[50] }} />
-                            </IconButton>
-                          }
-                          title={
-                            <span style={{ color: 'white' }}>{text.name}</span>
-                          }
-                          subheader={
-                            <Moment
-                              format='D MMM YYYY HH:mm'
-                              withTitle
-                              className='blog-date'
-                            >
-                              {text.createdAt}
-                            </Moment>
-                          }
-                        />
-                        <CardContent>
-                          <Typography variant='body2' color='white'>
-                            {text.text}
-                          </Typography>
-                        </CardContent>
+                          <CardContent>
+                            <Typography variant="body2" color="white">
+                              {text.text}
+                            </Typography>
+                          </CardContent>
 
-                        <ImageList cols={2} className='blog-imagelist'>
-                          {text.blogImage.map((item) => (
-                            <ImageListItem key={item}>
-                              <img
-                                src={item}
-                                alt='blogpics'
-                                className='blog-images'
+                          <ImageList cols={2} className="blog-imagelist">
+                            {text.blogImage.map((item) => (
+                              <ImageListItem key={item} className="blog-images">
+                                <img src={item} alt="blogpics" />
+                              </ImageListItem>
+                            ))}
+                          </ImageList>
+
+                          <CardActions disableSpacing>
+                            <IconButton
+                              aria-label="add to favorites"
+                              onClick={() => {
+                                setHeart(!heart)
+                              }}
+                            >
+                              <FavoriteIcon
+                                className={heart ? 'heart-white' : 'heart-red'}
                               />
-                            </ImageListItem>
-                          ))}
-                        </ImageList>
-
-                        <CardActions disableSpacing>
-                          <IconButton
-                            aria-label='add to favorites'
-                            onClick={() => {
-                              setHeart(!heart)
-                            }}
-                          >
-                            <FavoriteIcon
-                              className={heart ? 'heart-white' : 'heart-red'}
+                            </IconButton>
+                            <IconButton aria-label="share">
+                              <ShareIcon sx={{ color: red[50] }} />
+                            </IconButton>
+                          </CardActions>
+                        </Card>
+                      ) : (
+                        toggle === text.category && (
+                          <Card className="blog-card">
+                            <CardHeader
+                              avatar={
+                                <Avatar
+                                  sx={{ bgcolor: red[500] }}
+                                  aria-label="recipe"
+                                >
+                                  {text.name[0]}
+                                </Avatar>
+                              }
+                              action={
+                                <IconButton aria-label="settings">
+                                  <MoreVertIcon sx={{ color: red[50] }} />
+                                </IconButton>
+                              }
+                              title={
+                                <span style={{ color: 'white' }}>
+                                  {text.name}
+                                </span>
+                              }
+                              subheader={
+                                <Moment
+                                  format="D MMM YYYY HH:mm"
+                                  withTitle
+                                  className="blog-date"
+                                >
+                                  {text.createdAt}
+                                </Moment>
+                              }
                             />
-                          </IconButton>
-                          <IconButton aria-label='share'>
-                            <ShareIcon sx={{ color: red[50] }} />
-                          </IconButton>
-                        </CardActions>
-                      </Card>
-                    )
-                  )}
-                </span>
-              ))}
+                            <CardContent>
+                              <Typography variant="body2" color="white">
+                                {text.text}
+                              </Typography>
+                            </CardContent>
+
+                            <ImageList cols={2} className="blog-imagelist">
+                              {text.blogImage.map((item) => (
+                                <ImageListItem key={item}>
+                                  <img
+                                    src={item}
+                                    alt="blogpics"
+                                    className="blog-images"
+                                  />
+                                </ImageListItem>
+                              ))}
+                            </ImageList>
+
+                            <CardActions disableSpacing>
+                              <IconButton
+                                aria-label="add to favorites"
+                                onClick={() => {
+                                  setHeart(!heart)
+                                }}
+                              >
+                                <FavoriteIcon
+                                  className={
+                                    heart ? 'heart-white' : 'heart-red'
+                                  }
+                                />
+                              </IconButton>
+                              <IconButton aria-label="share">
+                                <ShareIcon sx={{ color: red[50] }} />
+                              </IconButton>
+                            </CardActions>
+                          </Card>
+                        )
+                      )}
+                    </span>
+                  ))}
+                </>
+              )}
             </>
           )}
 

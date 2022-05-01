@@ -37,40 +37,40 @@ export default function Drawer() {
   const list = (anchor) => (
     <Box
       sx={{ width: 290 }}
-      role='presentation'
+      role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      className='drawer-box'
+      className="drawer-box"
     >
       <div>
-        <h3 className='drawer-h3'>Udosinachi</h3>
+        <h3 className="drawer-h3">The Events</h3>
       </div>
       <Divider />
       <List>
         {[
           {
             name: 'Home',
-            icon: <HomeIcon className='drawer-smallicons' />,
+            icon: <HomeIcon className="drawer-smallicons" />,
             to: '/',
           },
           {
             name: 'Blog',
-            icon: <UpdateIcon className='drawer-smallicons' />,
+            icon: <UpdateIcon className="drawer-smallicons" />,
             to: '/blog',
           },
           {
             name: 'About',
-            icon: <InfoIcon className='drawer-smallicons' />,
+            icon: <InfoIcon className="drawer-smallicons" />,
             to: '/about',
           },
           {
             name: 'Contact Us',
-            icon: <ContactIcon className='drawer-smallicons' />,
+            icon: <ContactIcon className="drawer-smallicons" />,
             to: '/contact',
           },
         ].map((text) => (
           <span key={text.name}>
-            <Link to={`${text.to}`} className='b'>
+            <Link to={`${text.to}`} className="b">
               <ListItem button>
                 <ListItemIcon>{text.icon}</ListItemIcon>
                 <ListItemText primary={text.name} />
@@ -80,15 +80,15 @@ export default function Drawer() {
         ))}
       </List>
       <Divider />
-      <div className='nav-footer'>
-        <div className='footer-div'>
-          <div className='nav-icons'>
-            <i className='fab fa-twitter-square'></i>
-            <i className='fab fa-facebook-square'></i>
+      <div className="nav-footer">
+        <div className="footer-div">
+          <div className="nav-icons">
+            <i className="fab fa-twitter-square"></i>
+            <i className="fab fa-facebook-square"></i>
           </div>
         </div>
 
-        <div className='footer-copyrights'>
+        <div className="footer-copyrights">
           <span>
             Udosinachi provides the leading mobile linking platform with
             solutions that unify user experience and measurement across
@@ -103,17 +103,17 @@ export default function Drawer() {
   )
 
   return (
-    <div className='drawer'>
+    <div className="drawer">
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <IconButton
-            size='larger'
-            edge='start'
-            color='inherit'
-            aria-label='menu'
+            size="larger"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
             onClick={toggleDrawer(anchor, true)}
           >
-            <MenuIcon sx={{ color: blue[500] }} className='nav-icon' />
+            <MenuIcon sx={{ color: blue[500] }} className="nav-icon" />
           </IconButton>
           <SwipeableDrawer
             anchor={anchor}

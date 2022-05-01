@@ -24,7 +24,6 @@ import { toast } from 'react-toastify'
 import EditDropdown from '../../components/editdropdown/EditDropdown'
 import EditProfileImage from '../edituserprofile/EditProfileImage'
 import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
 
 const UserProfile = () => {
   const [heart, setHeart] = useState(true)
@@ -121,58 +120,58 @@ const UserProfile = () => {
   }
 
   return (
-    <div className='user-profile'>
+    <div className="user-profile">
       <Navbar />
-      <div className='user-profile-div'>
-        <div className='user-div'>
-          <div className='user-image-div'>
+      <div className="user-profile-div">
+        <div className="user-div">
+          <div className="user-image-div">
             <img
               src={localStorage.getItem('image')}
-              alt='profile'
-              className='user-profile-image'
+              alt="profile"
+              className="user-profile-image"
             />
-            <EditProfileImage className='change-img' />
+            <EditProfileImage className="change-img" />
           </div>
-          <div className='user-names'>
-            <span className='bn'>{localStorage.getItem('businessName')}</span>
-            <span className='fn'>{localStorage.getItem('fullName')}</span>
+          <div className="user-names">
+            <span className="bn">{localStorage.getItem('businessName')}</span>
+            <span className="fn">{localStorage.getItem('fullName')}</span>
           </div>
-          <div className='edit-btn'>
-            <EditUserProfile header='Edit Profile'>
+          <div className="edit-btn">
+            <EditUserProfile header="Edit Profile">
               <form onSubmit={handleSubmit}>
                 <TextField
                   fullWidth
-                  label='Business Name'
-                  id='fullWidth'
-                  className='edit-inputs'
+                  label="Business Name"
+                  id="fullWidth"
+                  className="edit-inputs"
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
                 />
                 <TextField
                   fullWidth
-                  label='Full Name'
-                  id='fullWidth'
-                  className='edit-inputs'
+                  label="Full Name"
+                  id="fullWidth"
+                  className="edit-inputs"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                 />
                 <TextField
                   fullWidth
-                  label='Email'
-                  id='fullWidth'
-                  className='edit-inputs'
+                  label="Email"
+                  id="fullWidth"
+                  className="edit-inputs"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <FormControl fullWidth>
-                  <InputLabel id='demo-simple-select-label'>
+                  <InputLabel id="demo-simple-select-label">
                     Category *
                   </InputLabel>
 
                   <Select
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    label='Category *'
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Category *"
                     onChange={(e) => setCategory(e.target.value)}
                     value={category}
                   >
@@ -185,24 +184,24 @@ const UserProfile = () => {
                 </FormControl>
                 <TextField
                   fullWidth
-                  label='Phone Number'
-                  id='fullWidth'
-                  className='edit-inputs'
+                  label="Phone Number"
+                  id="fullWidth"
+                  className="edit-inputs"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
                 <TextField
                   fullWidth
-                  label='User Text'
-                  id='fullWidth'
-                  className='edit-inputs'
+                  label="User Text"
+                  id="fullWidth"
+                  className="edit-inputs"
                   value={userText}
                   onChange={(e) => setUserText(e.target.value)}
                 />
 
                 <Button
-                  type='submit'
-                  variant='contained'
+                  type="submit"
+                  variant="contained"
                   startIcon={<SaveIcon />}
                 >
                   Save
@@ -212,7 +211,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className='user-personal-info'>
+        <div className="user-personal-info">
           <p>Email: {localStorage.getItem('email')}</p>
           <p>Phone Number: {localStorage.getItem('phoneNumber')}</p>
           <p>Category: {localStorage.getItem('category')}</p>
@@ -220,17 +219,16 @@ const UserProfile = () => {
         </div>
 
         <div>
-          <h2 className='profile-h2'>My Posts</h2>
+          <h2 className="profile-h2">My Posts</h2>
           {loader === true ? (
-            <div className='loader'>
-              <CircularProgress className='main-loader' />
+            <div className="loader">
+              <CircularProgress className="main-loader" />
             </div>
           ) : (
             <>
               {!userBlog || userBlog.length === 0 ? (
-                <div className='user-no-post-alert'>
-                  <Alert severity='info'>
-                    <AlertTitle>Info</AlertTitle>
+                <div className="user-no-post-alert">
+                  <Alert severity="info">
                     <strong>No Post!</strong>
                   </Alert>
                 </div>
@@ -238,12 +236,12 @@ const UserProfile = () => {
                 <div>
                   {userBlog.map((text) => (
                     <span key={text._id}>
-                      <Card className='blog-card'>
+                      <Card className="blog-card">
                         <CardHeader
                           avatar={
                             <Avatar
                               sx={{ bgcolor: red[500] }}
-                              aria-label='recipe'
+                              aria-label="recipe"
                             >
                               {text.name[0]}
                             </Avatar>
@@ -253,11 +251,11 @@ const UserProfile = () => {
                             <span style={{ color: 'white' }}>{text.name}</span>
                           }
                           subheader={
-                            <span className='blog-date'>
+                            <span className="blog-date">
                               <Moment
-                                format='D MMM YYYY HH:mm'
+                                format="D MMM YYYY HH:mm"
                                 withTitle
-                                className='blog-date'
+                                className="blog-date"
                               >
                                 {text.createdAt}
                               </Moment>
@@ -266,19 +264,19 @@ const UserProfile = () => {
                         />
 
                         <CardContent>
-                          <Typography variant='body2' color='white'>
+                          <Typography variant="body2" color="white">
                             {text.text}
                           </Typography>
                         </CardContent>
 
-                        <ImageList cols={2} className='blog-imagelist'>
+                        <ImageList cols={2} className="blog-imagelist">
                           {text.blogImage.map((item) => (
                             <ImageListItem key={item}>
                               <img
                                 src={item}
-                                alt='blogpics'
-                                loading='lazy'
-                                className='blog-images'
+                                alt="blogpics"
+                                loading="lazy"
+                                className="blog-images"
                               />
                             </ImageListItem>
                           ))}
@@ -286,7 +284,7 @@ const UserProfile = () => {
 
                         <CardActions disableSpacing>
                           <IconButton
-                            aria-label='add to favorites'
+                            aria-label="add to favorites"
                             onClick={() => {
                               setHeart(!heart)
                             }}
@@ -295,7 +293,7 @@ const UserProfile = () => {
                               className={heart ? 'heart-white' : 'heart-red'}
                             />
                           </IconButton>
-                          <IconButton aria-label='share'>
+                          <IconButton aria-label="share">
                             <ShareIcon sx={{ color: red[50] }} />
                           </IconButton>
                         </CardActions>
