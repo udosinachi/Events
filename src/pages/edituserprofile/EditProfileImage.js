@@ -42,7 +42,7 @@ const EditProfileImage = (props) => {
                   toast.success('Successfully updated')
                   localStorage.setItem('image', res.data.image)
                   setYes(!yes)
-                  // window.location.reload()
+                  window.location.reload()
                 } else {
                   toast.error(res.data.message)
                 }
