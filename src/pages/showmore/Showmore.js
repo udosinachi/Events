@@ -25,30 +25,30 @@ const Showmore = () => {
   }, [cats, id])
 
   return (
-    <div className='showmore'>
+    <div className="showmore">
       <Navbar />
-      <div className='showmore-div'>
-        <div className='showmore-subdiv'>
+      <div className="showmore-div">
+        <div className="showmore-subdiv">
           {loader === true ? (
-            <div className='loader'>
-              <CircularProgress className='main-loader' />
+            <div className="loader">
+              <CircularProgress className="main-loader" />
             </div>
           ) : (
             <>
               {cardName.map((list) => {
                 return (
-                  <div className='main-showmore' key={list._id}>
-                    <Link to={`/profile/${list._id}`} className='a'>
-                      <div className='showmore-image'>
-                        <div className='showmore-image-subdiv'>
-                          <img src={list.image} alt='events' className='img' />
+                  <div className="main-showmore" key={list._id}>
+                    <Link to={`/profile/${list._id}`} className="a">
+                      <div className="showmore-image">
+                        <div className="showmore-image-subdiv">
+                          <img src={list.image} alt="events" className="img" />
                         </div>
                       </div>
-                      <div className='showmore-content'>
-                        <p className='showmore-p'>{list.businessName}</p>
-                        <h4 className='showmore-h4'>{list.email}</h4>
-                        <p className='showmore-p2'>{list.category}</p>
-                        <p className='showmore-p3'>{list.userText}</p>
+                      <div className="showmore-content">
+                        <p className="showmore-p">{list.businessName}</p>
+                        {/* <h4 className='showmore-h4'>{list.email}</h4> */}
+                        <p className="showmore-p2">{list.category}</p>
+                        <p className="showmore-p3">{list.userText}</p>
                       </div>
                     </Link>
                   </div>
