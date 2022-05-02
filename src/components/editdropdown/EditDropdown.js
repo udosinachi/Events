@@ -51,9 +51,9 @@ export default function EditDropdown({ id, refresh }) {
       })
       .then((res) => {
         console.log(res.data)
-        refresh()
         setAnchorEl(null)
         toast.success('Post Successfully deleted')
+        refresh()
       })
       .catch((err) => {
         toast.error('Unable to Delete Post')
@@ -74,10 +74,11 @@ export default function EditDropdown({ id, refresh }) {
       })
       .then((res) => {
         console.log(res.data)
-        refresh()
         setAnchorEl(null)
         setEditText('')
         toast.success('Post Text has been editted')
+        refresh()
+        window.location.reload()
       })
       .catch((err) => {
         toast.error('Unable to edit')
@@ -87,11 +88,11 @@ export default function EditDropdown({ id, refresh }) {
   return (
     <div>
       <IconButton
-        aria-label='more'
-        id='long-button'
-        aria-controls='long-menu'
+        aria-label="more"
+        id="long-button"
+        aria-controls="long-menu"
         aria-expanded={open ? 'true' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         onClick={handleClick}
       >
         <MoreVertIcon sx={{ color: red[50] }} />
@@ -110,15 +111,15 @@ export default function EditDropdown({ id, refresh }) {
             <Box sx={style}>
               <TextField
                 fullWidth
-                label=' Edit Text'
-                id='fullWidth'
-                className='edit-inputs'
+                label=" Edit Text"
+                id="fullWidth"
+                className="edit-inputs"
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
               />
               <Button
-                type='submit'
-                variant='contained'
+                type="submit"
+                variant="contained"
                 startIcon={<SaveIcon />}
               >
                 Save
