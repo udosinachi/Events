@@ -199,71 +199,69 @@ const BlogPost = () => {
               )
             })}
           </div>
-          {localStorage.getItem('fullName') && (
-            <div>
-              <BlogToPost head="Create a new post">
-                <div className="ii">
-                  <TextField
-                    className="post-input"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="postText"
-                    label="Post Text"
-                    name="postText"
-                    autoComplete="postText"
-                    // autoFocus
-                    value={postText}
-                    onChange={(e) => setPostText(e.target.value)}
+          <div>
+            <BlogToPost head="Create a new post">
+              <div className="ii">
+                <TextField
+                  className="post-input"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="postText"
+                  label="Post Text"
+                  name="postText"
+                  autoComplete="postText"
+                  // autoFocus
+                  value={postText}
+                  onChange={(e) => setPostText(e.target.value)}
+                />
+                <label className="input-file">
+                  Select an image...
+                  <input
+                    type="file"
+                    value={postImage}
+                    onChange={(e) => addPic(e.target.files[0])}
                   />
-                  <label className="input-file">
-                    Select an image...
-                    <input
-                      type="file"
-                      value={postImage}
-                      onChange={(e) => addPic(e.target.files[0])}
-                    />
-                  </label>
-                </div>
-                {loader === false ? (
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    onClick={handleSubmit}
-                    sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-                  >
-                    Post
-                  </Button>
+                </label>
+              </div>
+              {loader === false ? (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  onClick={handleSubmit}
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  Post
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  onClick={handleSubmit}
+                  sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
+                >
+                  <CircularProgress />
+                </Button>
+              )}
+              <p className="post-text">{postText}</p>
+              <div className="main-posting-div">
+                {!it || it.length === 0 ? (
+                  <div>No Picture has been added</div>
                 ) : (
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    onClick={handleSubmit}
-                    sx={{ mt: 3, mb: 2, bgcolor: '#20364b' }}
-                  >
-                    <CircularProgress />
-                  </Button>
+                  <>
+                    {it.map((peg) => (
+                      <div key={peg} className="posting-imgdiv">
+                        <img src={peg} alt="jh" className="posting-img" />
+                        <button onClick={() => cancelHandler(peg)}>X</button>
+                      </div>
+                    ))}{' '}
+                  </>
                 )}
-                <p className="post-text">{postText}</p>
-                <div className="main-posting-div">
-                  {!it || it.length === 0 ? (
-                    <div>No Picture has been added</div>
-                  ) : (
-                    <>
-                      {it.map((peg) => (
-                        <div key={peg} className="posting-imgdiv">
-                          <img src={peg} alt="jh" className="posting-img" />
-                          <button onClick={() => cancelHandler(peg)}>X</button>
-                        </div>
-                      ))}{' '}
-                    </>
-                  )}
-                </div>
-              </BlogToPost>
-            </div>
-          )}
+              </div>
+            </BlogToPost>
+          </div>
 
           {loader === true ? (
             <div className="loader">
